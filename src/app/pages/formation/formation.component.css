@@ -46,9 +46,13 @@
 }
 
 /* Ajustes para pantallas móviles */
-@media (max-width: 50rem) {
+@media (max-width: 40rem) {
   .container{
+    width: 100%; /* Ocupa el ancho completo */
     margin-top: calc(var(--navbar-height, 8rem) + 1rem);
+    flex-direction: column;
+    padding: 0.625rem; /* Aproximadamente 10px */
+    box-sizing: border-box; /* Asegura que padding no afecte el ancho */
   }
   .container {
     flex-direction: column;
