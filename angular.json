@@ -29,7 +29,10 @@
             "styles": [
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "sweetalert2"
+            ]
           },
           "configurations": {
             "production": {
@@ -41,7 +44,7 @@
                 },
                 {
                   "type": "anyComponentStyle",
-                  "maximumWarning": "2kB",
+                  "maximumWarning": "2.5kB",
                   "maximumError": "4kB"
                 }
               ],
