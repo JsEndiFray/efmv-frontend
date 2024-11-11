@@ -138,6 +138,10 @@
 }
 
 
+
+
+
+
 /*Configuracion para movil*/
 @media (max-width: 50rem) {
   /*Ajuste del contenedor principal para pantallas pequeñas */
@@ -221,7 +225,3 @@
     display: flex;
   }
 }
-
-
-
-

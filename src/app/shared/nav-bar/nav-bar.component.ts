@@ -44,7 +44,7 @@ export class NavBarComponent {
   setActive(item: string) {
     this.activeItem = item;
     if (this.isMobileView) {
-      this.toggleMenu();
+      this.menuOpen= false
     }
   }
 

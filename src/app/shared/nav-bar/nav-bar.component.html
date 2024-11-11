@@ -58,7 +58,7 @@
           <span class="coming-soon">¡Próximamente!</span>
         </li>
 
-        <button class="contact" [routerLink]="['/contact']">Contacto</button>
+        <button class="contact" [routerLink]="['/contact']" (click)="setActive('contact')" [ngClass]="{'active': activeItem === 'contact'}">Contacto</button>
       </ul>
     </div>
   }
