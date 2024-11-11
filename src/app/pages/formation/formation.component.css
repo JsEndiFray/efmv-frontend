@@ -6,7 +6,7 @@
   align-items: center;
   width: 100%;
   height: auto;
-  padding: 12rem 1rem 5rem;
+  padding: 8rem 1rem 3rem;
 }
 
 /*contenedor individual*/
@@ -48,7 +48,7 @@
 /* Ajustes para pantallas móviles */
 @media (max-width: 50rem) {
   .container{
-    margin-top: 25rem;
+    margin-top: calc(var(--navbar-height, 8rem) + 1rem);
   }
   .container {
     flex-direction: column;

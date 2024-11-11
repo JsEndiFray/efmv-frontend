@@ -15,8 +15,10 @@ import {RouterLink} from '@angular/router';
 
 })
 export class NavBarComponent {
-scrolled = false;
-activeItem: string ='';
+  scrolled = false;
+  activeItem: string = '';
+  menuOpen = false;
+  isMobileView = window.innerWidth <= 800;
 
   // Detecta el evento de scroll en la ventana
   @HostListener('window:scroll', [])
@@ -24,9 +26,26 @@ activeItem: string ='';
     this.scrolled = window.scrollY > 0; // Si hay desplazamiento, cambia el estado de `scrolled`
   }
 
+  //detecta el tamaño de la pantalla para ajustar el menu con el isMobileView
+  @HostListener('window:resize', [])
+  onWindowResize() {
+    this.isMobileView = window.innerWidth <= 800;
+    if (!this.isMobileView) {
+      this.menuOpen = false;
+    }
+  }
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+
 //sirve al hacer click llama a la funcion y active el evento del menu
-  setActive(item: string){
+  setActive(item: string) {
     this.activeItem = item;
+    if (this.isMobileView) {
+      this.toggleMenu();
+    }
   }
 
 

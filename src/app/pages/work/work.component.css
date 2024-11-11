@@ -123,7 +123,7 @@
 /*Ajustes para pantallas móviles*/
 @media (max-width: 50rem) {
   .container {
-    margin-top: 15rem;
+    margin-top: 0;
   }
 
   .container-download button {

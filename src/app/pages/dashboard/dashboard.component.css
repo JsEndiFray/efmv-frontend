@@ -55,7 +55,7 @@
 @media (max-width: 50rem) {
   /* 600px */
   .container {
-    margin-top: 15rem;
+    margin-top: 0;
   }
 
   .container-title-item {

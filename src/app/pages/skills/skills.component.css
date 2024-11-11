@@ -93,7 +93,7 @@
 /*Ajustes para pantallas móviles*/
 @media (max-width: 50rem) { /*Aproximadamente 800px*/
   .container{
-    margin-top: 13rem;
+    margin-top: calc(var(--navbar-height, 0) + 1rem);
   }
   .container-items {
     max-width: 90%;
