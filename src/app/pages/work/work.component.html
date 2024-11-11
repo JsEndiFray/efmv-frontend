@@ -1,0 +1,31 @@
+<div class="container">
+  <div class="container-download">
+    <button type="button" class="download-button">
+      <span class="title">Descargar C.V</span>
+      <span class="coming-soon">!En proceso¡</span>
+    </button>
+  </div>
+
+  <div class="flip-containers">
+    @for (card of cards; track card.year) {
+      <div class="flip-container" (mouseenter)="flip(cards.indexOf(card))">
+        <div class="flipper" [ngClass]="{'flipped': isFlipped(cards.indexOf(card))}">
+          <div class="front">
+            {{ card.year }}
+          </div>
+          <div class="back">
+            <span class="year-small">{{ card.year }}</span>
+            <p>{{ card.text }}</p>
+            <p>{{ card.text1 }}</p>
+            <p>{{ card.text2 }}</p>
+            <p>{{ card.text3 }}</p>
+            <p>{{ card.text4 }}</p>
+            <p>{{ card.text5 }}</p>
+            <p>{{ card.text6 }}</p>
+          </div>
+        </div>
+      </div>
+    }
+  </div>
+</div>
+

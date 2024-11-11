@@ -1,0 +1,184 @@
+/*Todoo el contenido del html*/
+.container {
+  height: 8rem; /*Aproximadamente 240px*/
+  transition: height 1s ease 0s;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background: #0d1b28;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  padding-top: 1.5rem;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  overflow: hidden;
+  font-family: 'Inter', sans-serif;
+  opacity: 0.9;
+  z-index: 100000;
+}
+.container.scrolled{
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.2);
+}
+
+/* logo*/
+.nav-logo {
+  flex: 0 0 auto;
+  margin: 1.5rem; /*Aproximadamente 25px*/
+  cursor: pointer;
+
+}
+
+.nav-logo img {
+  height: 6.25rem; /*Aproximadamente 100px*/
+  width: 6.25rem; /*Aproximadamente 100px*/
+  border-radius: 1.25rem; /*Aproximadamente 20px*/
+}
+
+
+/*los menus del lado derecho*/
+.nav-list {
+  flex: 1;
+  display: flex;
+  justify-content: flex-end;
+}
+
+/*elemetos de la navegacion*/
+.nav-items {
+  display: flex;
+  flex-wrap: wrap;
+  list-style: none;
+  margin: 0;
+  cursor: pointer;
+  font-size: 1.25rem; /*Aproximadamente 20px*/
+  color: white;
+  align-items: center;
+}
+
+.nav-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  text-align: center;
+  margin-right: 1rem;
+}
+
+.nav-item .coming-soon {
+  position: absolute;
+  top: 1.5rem;
+  font-size: 0.8rem;
+  color: gray;
+  white-space: nowrap;
+}
+
+.nav-item:hover {
+  color: #4d8fc2;
+
+}
+/*esta varibles es para dejar activo el color que se ha seleccionado*/
+.nav-item.active .title{
+  color: #4d8fc2;
+  font-weight: bold;
+}
+.title{
+
+}
+.title .svg {
+  background-color: white;
+  border-radius: 5px;
+  width: 25px;
+  height: 24px;
+  margin-right: 6px; /* Espacio entre el ícono y el texto */
+  vertical-align: middle; /* Alineación vertical con el texto */
+
+}
+
+.barra {
+  margin: 0 0.625rem; /*Aproximadamente 10px*/
+  font-size: 1.875rem; /*Aproximadamente 30px*/
+}
+
+.contact {
+  height: 2.5rem; /*Aproximadamente 40px*/
+  width: 9.375rem; /*Aproximadamente 150px*/
+  border-radius: 1.5625rem; /*Aproximadamente 25px*/
+  border: none;
+  font-size: 1.25rem; /*Aproximadamente 20px*/
+  cursor: pointer;
+  color: seashell;
+  background-color: #4d8fc2;
+  margin: 1.6rem;
+  box-shadow: 0 0.35rem 0.9rem rgba(255, 255, 255, 0.2);
+
+}
+  .contact:hover{
+    transform: translateY(-0.125rem) scale(1.02);
+  }
+
+
+
+@media (max-width: 50rem) {
+  /*Ajuste del contenedor principal para pantallas pequeñas */
+  .container {
+    flex-direction: column;
+    height: auto;
+    padding: 0.625rem;
+   text-align: center;
+    align-items: center;
+
+  }
+  .nav-logo{
+    margin: 0.5rem 0;
+  }
+  /* Ajuste del logo en pantallas pequeñas */
+  .nav-logo img{
+    height: 4rem;
+    width: 4rem;
+    border-radius: 1rem;
+  }
+
+  /* Coloca los elementos de navegación en columna */
+  .nav-items {
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-size: 1.125rem;
+    width: 100%;
+  }
+
+  /* Ajuste de los elementos individuales en el menú de navegación */
+  .nav-item {
+    margin: 0.5rem 0;
+    text-align: center;
+  }
+
+  /* Ajusta la posición del texto "¡Próximamente!" debajo del enlace "Proyectos" */
+  .nav-item .coming-soon {
+    position: relative;
+    top: 0; /* Resetea el desplazamiento */
+    margin-top: 0.2rem;
+    font-size: 0.8rem;
+    color: gray;
+    white-space: normal; /* Permite que el texto se ajuste automáticamente */
+  }
+
+  /* Oculta las barras en pantallas pequeñas */
+  .barra {
+    display: none;
+  }
+
+  /* Botón de contacto ocupa el ancho en pantallas pequeñas */
+  .contact {
+    width: 100%;
+    font-size: 1.125rem;
+    margin-top: 0.625rem;
+    margin-left: 0;
+  }
+
+}
+
+
+
+

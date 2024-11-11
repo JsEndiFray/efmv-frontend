@@ -1,0 +1,113 @@
+.container {
+  padding: 12rem 1rem 5rem;
+  /*contenedor titulo*/
+
+  & .container-title-item {
+    margin: 0.625rem; /*10px*/
+    padding: 0.625rem; /*10px*/
+  }
+
+  & .container-title-item p {
+    text-align: center;
+    font-size: 2.625rem; /*42px*/
+    font-family: fantasy;
+    color: white;
+  }
+}
+
+/*contenedpr*/
+.container-item {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: auto;
+}
+
+.container-items p {
+  text-align: center;
+  font-size: 1rem; /* 16px */
+  font-family: fantasy;
+  margin: 0.1875rem; /* 3px */
+}
+
+/*contenedor de los items*/
+.container-items {
+  background-color: #122231;
+  max-width: 17.5rem; /* 80px*/
+  width: 100%;
+  height: 14rem; /*350px*/
+  margin: 1.25rem; /*20px*/
+  padding: 0.9375rem; /*15px*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.625rem; /*10px*/
+  box-sizing: border-box;
+  overflow: hidden;
+  color: white;
+}
+
+/*para 3D*/
+.container-photo {
+  perspective: 1000px;
+}
+
+.container-photo img {
+  width: 100%;
+  max-width: 7.5rem; /*120px*/
+  flex: 0 0 auto;
+  border-radius: 1.25rem; /*20px*/
+  margin: 0.9375rem; /*15px */
+  cursor: crosshair;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+  backface-visibility: hidden;
+}
+
+/*animacion para que la imagen gire*/
+.container-photo:hover img {
+  transform: rotateY(360deg);
+}
+
+/*Clase para el efecto de zoom-in*/
+.zoom-in {
+  animation: zoomInOut 2s ease-in-out;
+}
+
+/*Animación de zoom-in y vuelta al tamaño normal*/
+@keyframes zoomInOut {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2); /*Aumento del 20% en el tamaño*/
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/*Ajustes para pantallas móviles*/
+@media (max-width: 50rem) { /*Aproximadamente 800px*/
+  .container{
+    margin-top: 13rem;
+  }
+  .container-items {
+    max-width: 90%;
+    margin: 1rem;
+    padding: 1rem;
+  }
+
+  .container-title-item p {
+    font-size: 2rem;
+  }
+
+  .container-items p {
+    font-size: 0.875rem;
+  }
+}
+
+

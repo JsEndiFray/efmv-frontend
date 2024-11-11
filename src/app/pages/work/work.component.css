@@ -1,0 +1,179 @@
+/* El contenedor general */
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 1.25rem; /*20px*/
+  cursor: pointer;
+  padding: 12rem 1rem 5rem;
+}
+
+.container-download {
+  margin: auto;
+  transition: transform 0.3s ease; /*Corrige 'transforma' a 'transform'*/
+}
+
+.container-download button {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #122231;
+  color: white;
+  height: auto;
+  width: 100%;
+  max-width: 14rem;
+  padding: 1.4rem;
+  border: none;
+  border-radius: 1.25rem; /*20px*/
+  cursor: pointer;
+  font-size: 1.125rem; /*18px*/
+  text-align: center;
+}
+.download-button:hover{
+  box-shadow: 0 0.25rem 0.5rem rgba(255, 255, 255, 0.2);
+  transform: translateY(-0.125rem) scale(1.02);
+}
+
+.title {
+  font-size: 1.125rem;
+  margin-bottom: 0.2rem;
+}
+
+.coming-soon {
+  font-size: 0.8rem;
+  color: gray;
+  margin-top: 0.2rem;
+}
+
+
+.container-download.enlarged {
+  box-shadow: 0 0.3125rem 0.625rem rgba(0, 0, 0, 0.2); /* Sombra en rems */
+  transform: translateY(-0.125rem) scale(1.02); /* Desplazamiento */
+}
+
+.flip-containers {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+}
+
+/*Contenedor individual*/
+.flip-container {
+  perspective: 1000px;
+  width: 21.875rem; /*350px*/
+  height: 13.125rem; /*210px*/
+  margin: 1.25rem; /* 0px*/
+  min-width: 12.5rem; /*Aproximadamente  200px*/
+}
+
+/*El segundo contenedor*/
+.flipper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.6s;
+}
+
+/*Para manejar la vuelta*/
+.flipper.flipped {
+  transform: rotateY(180deg);
+}
+
+/*Configuración del div flipper frontal y posterior*/
+.front,
+.back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 1.125rem; /*18px*/
+  border-radius: 3.125rem; /*50px*/
+}
+
+.front {
+  background-color: #122231;
+  color: #ffffff;
+  font-size: 2.1875rem; /*35px*/
+}
+
+.back {
+  background-color: #262323;
+  color: #ffffff;
+  transform: rotateY(180deg);
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow: hidden;
+}
+
+.year-small {
+  font-size: 1rem;
+  color: lightgray;
+  margin-bottom: 1rem;
+}
+
+
+/*Ajustes para pantallas móviles*/
+@media (max-width: 50rem) {
+  .container {
+    margin-top: 15rem;
+  }
+
+  .container-download button {
+    height: auto;
+    width: 90%;
+    font-size: 1rem;
+    padding: 0.4rem;
+    margin-bottom: 1rem;
+  }
+
+  .title {
+    font-size: 1rem;
+    margin-bottom: 0.15rem;
+  }
+
+  .coming-soon {
+    font-size: 0.75rem;
+    margin-top: -0.1rem;
+  }
+
+  .flip-containers {
+    gap: 1rem;
+  }
+
+  .flip-container {
+    width: 90%;
+    height: auto;
+    margin: 0.625rem;
+    min-width: 12rem;
+  }
+
+  /* Oculta la parte frontal en pantallas pequeñas */
+  .front {
+    display: none;
+  }
+
+  /* Asegura que la parte "back" esté completamente visible y fija */
+  .back {
+    position: relative;
+    transform: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-size: 1rem;
+    height: auto;
+    padding: 1rem;
+  }
+
+  /* Desactiva el efecto de giro en pantallas pequeñas */
+  .flipper {
+    transform: none !important;
+  }
+}

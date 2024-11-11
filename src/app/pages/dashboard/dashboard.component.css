@@ -1,0 +1,80 @@
+/*Configuracion general*/
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: auto;
+  color: #ffffff;
+  padding: 12rem 1rem 5rem;
+}
+
+.container-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  width: 100%;
+}
+
+.container-photo {
+  margin: 0 1.25rem;
+
+
+  & img {
+    height: 13.75rem; /* 20px*/
+    width: 10.625rem; /*170px*/
+  }
+}
+
+/* el titulo*/
+.container-title-item {
+  margin-bottom: 0.9375rem; /* 5px*/
+  font-size: 3.125rem; /*50px*/
+  font-family: 'Inter', sans-serif;
+}
+
+/*los p*/
+.container-items {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: auto;
+  width: 100%;
+  margin: 0.625rem; /*10px*/
+  font-size: 1.125rem; /*18px*/
+  font-family: Arial, sans-serif;
+  overflow: hidden;
+  line-height: 1.6rem;
+
+  & p {
+    margin: 0.9rem;
+  }
+}
+
+
+/* Responsividad */
+@media (max-width: 50rem) {
+  /* 600px */
+  .container {
+    margin-top: 15rem;
+  }
+
+  .container-title-item {
+    font-size: 2rem;
+  }
+
+  .container-photo img {
+    height: 10rem;
+    width: 8rem;
+  }
+
+  .container-items {
+    font-size: 1rem;
+    margin: 0.3125rem; /*5px*/
+  }
+
+  .container-content {
+    flex-direction: column;
+    align-items: center;
+  }
+
+}
