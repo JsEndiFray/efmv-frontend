@@ -4,9 +4,7 @@
   display: flex;
   flex-wrap: wrap;
   margin: 0 auto;
-
 }
-
 /* Sección izquierda */
 .container-section {
   flex: 1;
@@ -54,7 +52,8 @@ ul {
   height: auto;
   border-radius: 0.5rem;
   box-shadow: 0 0.13rem 0.3rem rgb(134, 44, 44);
-  margin-top: 0.625rem;
+  margin-top: 1rem;
+
 }
 
 .container-img h2 {
@@ -63,14 +62,32 @@ ul {
   color: #4d8fc2;
 }
 
+button{
+  height: 1.9rem;
+  width: 10rem;
+  border-radius: 0.5rem;
+  background: #4d8fc2;
+  border: none;
+  color: #ffffff;
+  cursor: pointer;
+}
+
 /* Responsivo */
 @media (max-width: 48rem) {
   .container {
     flex-direction: column;
+    align-items: stretch;
+  }
+
+  .container-section, .container-img {
+    flex: unset;/*Desactiva flex para que el contenido determine el tamaño */
+    width: 100%;
+    margin-bottom: 1rem;
   }
 
   .container-img {
-    margin-top: 1.25rem;
+    max-width: 90%;
+    margin: 0 auto;
   }
 }
 

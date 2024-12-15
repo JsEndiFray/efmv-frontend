@@ -6,6 +6,7 @@ import {WorkComponent} from './pages/work/work.component';
 import {ContactComponent} from './pages/contact/contact.component';
 import {ProjectComponent} from './pages/project/project.component';
 
+
 export const routes: Routes = [
 
   {
@@ -37,6 +38,10 @@ export const routes: Routes = [
     path: 'project',
     component: ProjectComponent,
     title: 'Proyectos'
+  },
+  {
+    path:'project-map',
+    loadComponent: ()=> import('./core/project-map/project-map.component').then(m => m.ProjectMapComponent)
   },
 
   {
