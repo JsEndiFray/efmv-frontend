@@ -45,12 +45,12 @@
             [ngClass]="{'active': activeItem === 'work'}">
           <span class="title">
             <img class="svg" src="/svg/business-time.svg" alt="experiencia.svg">
-            Experiencia laboral
+            Experiencia Laboral
           </span>
         </li>
         <span class="barra">&#124;</span>
 
-        <li class="nav-item" (click)="setActive('project')" [ngClass]="{'active': activeItem === 'project'}">
+        <li class="nav-item" [routerLink]="['/project']" (click)="setActive('project')" [ngClass]="{'active': activeItem === 'project'}">
           <span class="title">
             <img class="svg" src="/svg/user-gear.svg" alt="proyecto.svg">
             Proyectos

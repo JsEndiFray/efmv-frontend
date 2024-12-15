@@ -1,1 +1,36 @@
-<p>project works!</p>
+<div class="container">
+  <div class="container-section">
+    <h1>BackEnd Nest.js</h1>
+    <section>
+      <h2>Documentación de la API</h2>
+      <p>Esta API permite gestionar usuarios, roles y autenticación de manera eficiente. A continuación, un breve
+        resumen de los principales endpoints:</p>
+
+      <h3>1. Autenticación</h3>
+      <p><strong>POST /auth/login:</strong> Autentica un usuario y devuelve un token JWT para acceder a los recursos
+        protegidos.</p>
+
+      <h3>2. Gestión de Usuarios</h3>
+      <p><strong>GET /todosgi :</strong> Recupera la lista de usuarios registrados (requiere autenticación).</p>
+      <p><strong>POST /admin:</strong> Permite crear un nuevo usuario proporcionando datos como nombre, correo y rol.
+      </p>
+
+      <h3>3. Gestión de Roles</h3>
+      <p><strong>GET /roles:</strong> Recupera la lista de roles disponibles (requiere autenticación).</p>
+
+      <h3>Notas importantes</h3>
+      <ul>
+        <li>Las rutas protegidas utilizan el decorador <code>&#64;Roles</code> para controlar el acceso.</li>
+        <li>Las rutas públicas, como la autenticación, están marcadas con el decorador <code>&#64;Public</code>.</li>
+      </ul>
+    </section>
+  </div>
+
+  <div class="container-img">
+    <h2>Vista del backend desarrollado en Nest.js.</h2>
+    <img src="./project%20jpg/project.jpg" alt="Imagen Backend Nest.js">
+
+  </div>
+
+
+</div>

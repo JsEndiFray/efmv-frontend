@@ -4,18 +4,19 @@ import {FormationComponent} from './pages/formation/formation.component';
 import {SkillsComponent} from './pages/skills/skills.component';
 import {WorkComponent} from './pages/work/work.component';
 import {ContactComponent} from './pages/contact/contact.component';
+import {ProjectComponent} from './pages/project/project.component';
 
 export const routes: Routes = [
 
   {
     path:'dashboard',
     component: DashboardComponent,
-    title:'Carta Presentacion'
+    title:'Carta Presentación'
   },
   {
     path:'formation',
     component: FormationComponent,
-    title:'Formacion'
+    title:'Formación'
   },
   {
     path:'skills',
@@ -25,12 +26,17 @@ export const routes: Routes = [
   {
     path:'work',
     component: WorkComponent,
-    title:'Experiencia laboral'
+    title:'Experiencia Laboral'
   },
   {
     path: 'contact',
     component: ContactComponent,
     title:'Contacto'
+  },
+  {
+    path: 'project',
+    component: ProjectComponent,
+    title: 'Proyectos'
   },
 
   {
