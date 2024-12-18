@@ -14,7 +14,7 @@ export class ContactApiService {
 
   constructor(private http: HttpClient) {
     this.appUrl = environmentProduct.apiUrl;
-    this.appContact = 'api/contact'
+    this.appContact = '/api/contact'
   }
 
 
