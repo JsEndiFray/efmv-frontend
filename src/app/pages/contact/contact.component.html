@@ -1,18 +1,26 @@
 <form class="container" (ngSubmit)="sendMessage()">
+  <!-- Contenedor de correo -->
   <div class="container-email">
-    <p>{{ email }}</p>
-  </div>
-  <div class="container-items">
-    <input type="text" placeholder="Nombre" name="name" [(ngModel)]="contacts.name">
-    <input type="email" id="email" placeholder="Correo electronico" name="email" [(ngModel)]="contacts.email">
+    <span>{{ email }}</span>
   </div>
 
-  <div class="container-textarea">
-    <textarea name="message" cols="90" rows="10" [(ngModel)]="contacts.message"></textarea>
+  <!-- Contenedor de entradas -->
+  <div class="container-items">
+    <label for="name">Nombre:</label>
+    <input type="text" id="name" name="name" [(ngModel)]="contacts.name" required>
+
+    <label for="email">Correo electrónico:</label>
+    <input type="email" id="email" name="email" [(ngModel)]="contacts.email" required>
   </div>
+
+  <!-- Contenedor del mensaje -->
+  <div class="container-textarea">
+    <label for="message">Mensaje:</label>
+    <textarea id="message" name="message" cols="90" rows="10" [(ngModel)]="contacts.message" required></textarea>
+  </div>
+
+  <!-- Contenedor del botón -->
   <div class="container-button">
     <button type="submit">Enviar</button>
   </div>
 </form>
-
-

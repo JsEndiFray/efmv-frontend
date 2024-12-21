@@ -1,4 +1,4 @@
-/*el contenedor general*/
+/* Contenedor general */
 .container {
   display: flex;
   flex-wrap: wrap;
@@ -9,62 +9,87 @@
   padding: 8rem 1rem 3rem;
 }
 
-/*contenedor individual*/
-
+/* Contenedor individual */
 .container-items {
   background-color: #122231;
   width: 100%;
-  max-width: 21.875rem; /* 350px */
-  height: 16.875rem; /* 350px */
-  margin: 5rem 1.5rem; /* 24px 24px*/
-  padding: 1.25rem; /* 20px */
+  max-width: 21.875rem;
+  height: auto;
+  margin: 5rem 1.5rem;
+  padding: 1.25rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  border-radius: 0.625rem; /* 10px */
+  border-radius: 0.625rem;
   cursor: crosshair;
   box-sizing: border-box;
   overflow: hidden;
-
 }
 
+/* Contenedor de imágenes */
 .container-photo img {
   width: 100%;
-  max-width: 6.25rem; /* 100px */
+  max-width: 6.25rem;
   flex: 0 0 auto;
-  border-radius: 1.25rem; /* 20px */
-  margin: 1.5625rem; /* 25px */
+  border-radius: 1.25rem;
+  margin: 1.5625rem 0;
 }
 
-/*contenedor p*/
+/* Títulos (h3) */
+.container-items h3 {
+  text-align: center;
+  font-size: 1.25rem;
+  margin: 0.5rem 0;
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Párrafos */
 .container-items p {
   text-align: center;
-  font-size: 1.125rem; /* 18px */
-  margin: 0.3125rem; /* 5px */
-  color: white;
+  font-size: 1.125rem;
+  margin: 0.3125rem;
+  color: #fff;
+}
+
+/* Etiqueta time */
+.container-items time {
+  text-align: center;
+  font-size: 1rem;
+  color: #d1d1d1;
+  margin-top: 0.5rem;
+  font-style: italic;
 }
 
 /* Ajustes para pantallas móviles */
 @media (max-width: 40rem) {
-  .container{
-    width: 100%; /* Ocupa el ancho completo */
+  .container {
+    width: 100%;
     margin-top: calc(var(--navbar-height, 8rem) + 1rem);
     flex-direction: column;
-    padding: 0.625rem; /* Aproximadamente 10px */
-    box-sizing: border-box; /* Asegura que padding no afecte el ancho */
-  }
-  .container {
-    flex-direction: column;
-    padding: 1rem 4.5rem 0 2rem;  /* Aproximadamente 10px */
+    padding: 0.625rem;
+    box-sizing: border-box;
   }
 
   .container-items {
-    margin: 1.5625rem; /* 25px */
-    padding: 1rem; /* Ajusta el padding para móviles */
+    margin: 1.5625rem 0;
+    padding: 1rem;
+  }
+
+  .container-photo img {
+    max-width: 5rem;
+  }
+
+  .container-items h3 {
+    font-size: 1.125rem;
   }
 
   .container-items p {
-    font-size: 1rem; /* Ajusta el tamaño de la fuente para móviles */
+    font-size: 1rem;
+  }
+
+  .container-items time {
+    font-size: 0.875rem;
   }
 }

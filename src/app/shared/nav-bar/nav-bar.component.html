@@ -50,15 +50,17 @@
         </li>
         <span class="barra">&#124;</span>
 
-        <li class="nav-item" [routerLink]="['/project']" (click)="setActive('project')" [ngClass]="{'active': activeItem === 'project'}">
+        <li class="nav-item" [routerLink]="['/project']" (click)="setActive('project')"
+            [ngClass]="{'active': activeItem === 'project'}">
           <span class="title">
             <img class="svg" src="/svg/user-gear.svg" alt="proyecto.svg">
             Proyectos
           </span>
-          <span class="coming-soon">¡Próximamente!</span>
+          <span class="coming-soon">¡En proceso !</span>
         </li>
-
-        <button class="contact" [routerLink]="['/contact']" (click)="setActive('contact')" [ngClass]="{'active': activeItem === 'contact'}">Contacto</button>
+        <button class="contact" [routerLink]="['/contact']" (click)="setActive('contact')"
+                [ngClass]="{'active': activeItem === 'contact'}">Contacto
+        </button>
       </ul>
     </div>
   }
