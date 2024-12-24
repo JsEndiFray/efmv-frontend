@@ -38,7 +38,7 @@ export class ContactComponent {
         icon: 'error',
         title: 'Oops...',
         text: 'Algo ha salido mal!',
-        footer: 'Revisa que todos los apartados esten correctamente rellenos ',
+        footer: 'Revisa que todos los apartados estén correctamente rellenos ',
       });
       return;
     }
@@ -73,7 +73,7 @@ export class ContactComponent {
         Swal.fire({
           icon: "error",
           title: "Error",
-          text: "No se pudo enviar el mensaje. Intentelo de nuevo màs tarde.",
+          text: "No se pudo enviar el mensaje. Inténtelo de nuevo más tarde.",
         })
       }
     })
