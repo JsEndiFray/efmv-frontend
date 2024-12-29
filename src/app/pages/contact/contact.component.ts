@@ -18,7 +18,7 @@ import {ContactApiService} from '../../core/services/contact-api.service';
 
 })
 export class ContactComponent {
-  email: String = 'endifraymv@gmail.com'
+  email: String = 'endifray@efmv.es'
 
   constructor(private _ContactApiService: ContactApiService,
               private router: Router) {
