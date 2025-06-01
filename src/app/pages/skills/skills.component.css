@@ -1,47 +1,62 @@
-/* Contenedor principal de habilidades */
-.container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 8rem 2rem 2rem 2rem;
+:host {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-light: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --accent-bg: rgba(102, 126, 234, 0.1);
+  --accent-light: rgba(102, 126, 234, 0.05);
+  --accent-border: rgba(102, 126, 234, 0.2);
+  --accent-hover: rgba(102, 126, 234, 0.2);
+  --text-primary: #334155;
+  --text-secondary: #64748b;
+  --text-accent: #667eea;
+  --shadow-base: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  --shadow-photo: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  --shadow-photo-hover: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
+  --shadow-level: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);
+  --other-gradient: linear-gradient(90deg, #f59e0b, #f97316);
 }
 
-/* Header de la página de habilidades */
+.container {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  padding: 8rem 2rem 2rem;
+}
+
 .skills-header {
   text-align: center;
   margin-bottom: 4rem;
 }
 
 .skills-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font: 700 2.5rem/1.2 inherit;
+  background: var(--primary-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   letter-spacing: 0.05rem;
 }
 
 .skills-subtitle {
-  font-size: 1.2rem;
-  color: #64748b;
+  font: 400 1.2rem/1.4 inherit;
+  color: var(--text-secondary);
   margin: 0;
-  font-weight: 400;
 }
 
-/* Estado de carga */
 .loading-message {
   text-align: center;
-  font-size: 1.2rem;
-  color: #667eea;
+  font: 400 1.2rem/1.4 inherit;
+  color: var(--text-accent);
   padding: 3rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--glass-bg);
   border-radius: 1rem;
   margin: 2rem auto;
   max-width: 30rem;
 }
 
-/* Secciones de habilidades */
 .skills-section {
   margin-bottom: 4rem;
   max-width: 75rem;
@@ -50,11 +65,10 @@
 }
 
 .section-title {
-  font-size: 2rem;
-  font-weight: 600;
-  color: #334155;
+  font: 600 2rem/1.2 inherit;
+  color: var(--text-primary);
   text-align: center;
-  margin: 0 0 3rem 0;
+  margin: 0 0 3rem;
   position: relative;
 }
 
@@ -66,11 +80,10 @@
   transform: translateX(-50%);
   width: 4rem;
   height: 0.25rem;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: var(--primary-gradient);
   border-radius: 0.125rem;
 }
 
-/* Grid de habilidades */
 .skills-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(20rem, 1fr));
@@ -78,14 +91,13 @@
   justify-content: center;
 }
 
-/* Elementos individuales de habilidad */
 .skill-item {
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--glass-bg);
   backdrop-filter: blur(0.625rem);
   border-radius: 1.5rem;
   padding: 2rem;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
-  border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-base);
+  border: 0.0625rem solid var(--glass-border);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
   transform: translateY(2rem) scale(0.9);
@@ -104,7 +116,7 @@
   left: 0;
   right: 0;
   height: 0.25rem;
-  background: linear-gradient(90deg, #667eea, #764ba2);
+  background: var(--primary-gradient);
   transform: scaleX(0);
   transition: transform 0.3s ease;
 }
@@ -115,32 +127,30 @@
 
 .skill-item:hover {
   transform: translateY(-0.5rem) scale(1.02);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-hover);
 }
 
-/* Animación de entrada */
 .skill-item.animated {
   opacity: 1;
   transform: translateY(0) scale(1);
 }
 
-/* Foto de la habilidad */
 .skill-photo {
   width: 5rem;
   height: 5rem;
-  margin: 0 0 1.5rem 0;
-  background: rgba(255, 255, 255, 0.8);
+  margin: 0 0 1.5rem;
+  background: var(--glass-light);
   border-radius: 1rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-photo);
   transition: all 0.3s ease;
 }
 
 .skill-photo:hover {
   transform: scale(1.1);
-  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-photo-hover);
 }
 
 .skill-photo img {
@@ -150,7 +160,6 @@
   border-radius: 0.5rem;
 }
 
-/* Contenido de la habilidad */
 .skill-content {
   width: 100%;
   display: flex;
@@ -158,7 +167,6 @@
   gap: 1rem;
 }
 
-/* Header de cada habilidad */
 .skill-header {
   display: flex;
   flex-direction: column;
@@ -167,26 +175,22 @@
 }
 
 .skill-name {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #334155;
+  font: 600 1.25rem/1.2 inherit;
+  color: var(--text-primary);
   margin: 0;
   text-align: center;
 }
 
-/* Badge de nivel */
 .skill-level {
   color: white;
   padding: 0.25rem 0.75rem;
   border-radius: 1rem;
-  font-weight: 600;
-  font-size: 0.75rem;
+  font: 600 0.75rem/1 inherit;
   text-transform: uppercase;
   letter-spacing: 0.05rem;
-  box-shadow: 0 0.125rem 0.5rem rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-level);
 }
 
-/* Tecnologías */
 .skill-technologies {
   display: flex;
   flex-wrap: wrap;
@@ -195,108 +199,59 @@
 }
 
 .tech-tag {
-  background: rgba(102, 126, 234, 0.1);
-  color: #667eea;
+  background: var(--accent-bg);
+  color: var(--text-accent);
   padding: 0.375rem 0.75rem;
   border-radius: 1rem;
-  font-size: 0.875rem;
-  font-weight: 500;
-  border: 0.0625rem solid rgba(102, 126, 234, 0.2);
+  font: 500 0.875rem/1 inherit;
+  border: 0.0625rem solid var(--accent-border);
   transition: all 0.3s ease;
 }
 
 .tech-tag:hover {
-  background: rgba(102, 126, 234, 0.2);
+  background: var(--accent-hover);
   transform: translateY(-0.125rem);
 }
 
-/* Descripción */
 .skill-description {
-  font-size: 0.9rem;
-  color: #64748b;
-  line-height: 1.5;
+  font: 400 0.9rem/1.5 inherit;
+  color: var(--text-secondary);
   margin: 0;
   text-align: center;
 }
 
-/* Experiencia */
 .skill-experience {
-  font-size: 0.875rem;
-  color: #667eea;
-  font-weight: 500;
+  font: 500 0.875rem/1.2 inherit;
+  color: var(--text-accent);
   padding: 0.5rem;
-  background: rgba(102, 126, 234, 0.05);
+  background: var(--accent-light);
   border-radius: 0.5rem;
   border: 0.0625rem solid rgba(102, 126, 234, 0.1);
 }
 
-/* Habilidades no técnicas */
 .other-skill {
   border-left: 0.25rem solid #f59e0b;
 }
 
 .other-skill::before {
-  background: linear-gradient(90deg, #f59e0b, #f97316);
+  background: var(--other-gradient);
 }
 
-/* Responsive para tablet */
 @media (max-width: 68rem) {
-  .container {
-    padding: 8rem 1.5rem 2rem 1.5rem;
-  }
-
-  .skills-header h1 {
-    font-size: 2rem;
-  }
-
-  .skills-grid {
-    grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr));
-    gap: 1.5rem;
-  }
-
-  .skill-item {
-    padding: 1.5rem;
-  }
+  .container { padding: 8rem 1.5rem 2rem; }
+  .skills-header h1 { font-size: 2rem; }
+  .skills-grid { grid-template-columns: repeat(auto-fit, minmax(18rem, 1fr)); gap: 1.5rem; }
+  .skill-item { padding: 1.5rem; }
 }
 
-/* Responsive para móvil */
 @media (max-width: 48rem) {
-  .container {
-    padding: 8rem 1rem 2rem 1rem;
-  }
-
-  .skills-header h1 {
-    font-size: 1.75rem;
-  }
-
-  .skills-subtitle {
-    font-size: 1rem;
-  }
-
-  .skills-grid {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .skill-item {
-    padding: 1.5rem;
-  }
-
-  .skill-photo {
-    width: 4rem;
-    height: 4rem;
-  }
-
-  .skill-photo img {
-    width: 3rem;
-    height: 3rem;
-  }
-
-  .skill-name {
-    font-size: 1.125rem;
-  }
-
-  .section-title {
-    font-size: 1.75rem;
-  }
+  .container { padding: 8rem 1rem 2rem; }
+  .skills-header h1 { font-size: 1.75rem; }
+  .skills-subtitle { font-size: 1rem; }
+  .skills-grid { grid-template-columns: 1fr; gap: 1.5rem; }
+  .skill-item { padding: 1.5rem; }
+  .skill-photo { width: 4rem; height: 4rem; }
+  .skill-photo img { width: 3rem; height: 3rem; }
+  .skill-name { font-size: 1.125rem; }
+  .section-title { font-size: 1.75rem; }
 }

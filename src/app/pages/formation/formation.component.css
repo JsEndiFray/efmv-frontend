@@ -1,42 +1,53 @@
-/* Contenedor principal de formación */
-.container {
-  min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 8rem 2rem 2rem 2rem;
+:host {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-light: rgba(255, 255, 255, 0.8);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --timeline-color: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  --text-primary: #334155;
+  --text-secondary: #64748b;
+  --text-accent: #667eea;
+  --shadow-base: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  --shadow-photo: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  --shadow-photo-hover: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
+  --shadow-dot: 0 0.25rem 0.75rem rgba(102, 126, 234, 0.3);
 }
 
-/* Header de la página de formación */
+.container {
+  min-height: 100vh;
+  background: var(--bg-gradient);
+  padding: 8rem 2rem 2rem;
+}
+
 .formation-header {
   text-align: center;
   margin-bottom: 4rem;
 }
 
 .formation-header h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font: 700 2.5rem/1.2 inherit;
+  background: var(--primary-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  margin: 0 0 1rem 0;
+  margin: 0 0 1rem;
   letter-spacing: 0.05rem;
 }
 
 .formation-subtitle {
-  font-size: 1.2rem;
-  color: #64748b;
+  font: 400 1.2rem/1.4 inherit;
+  color: var(--text-secondary);
   margin: 0;
-  font-weight: 400;
 }
 
-/* Timeline principal */
 .formation-timeline {
   max-width: 60rem;
   margin: 0 auto;
   position: relative;
 }
 
-/* Línea vertical del timeline */
 .formation-timeline::before {
   content: '';
   position: absolute;
@@ -44,31 +55,33 @@
   top: 0;
   bottom: 0;
   width: 0.25rem;
-  background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
+  background: var(--timeline-color);
   border-radius: 0.125rem;
   z-index: 1;
 }
 
-/* Elementos individuales de formación */
 .formation-item {
   position: relative;
   margin-bottom: 3rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--glass-bg);
   backdrop-filter: blur(0.625rem);
   border-radius: 1.5rem;
   padding: 2rem;
   margin-left: 4rem;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
-  border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-base);
+  border: 0.0625rem solid var(--glass-border);
   transition: all 0.3s ease;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 2rem;
+  align-items: start;
 }
 
 .formation-item:hover {
   transform: translateY(-0.5rem);
-  box-shadow: 0 1.5rem 4rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-hover);
 }
 
-/* Punto en la línea del timeline */
 .formation-item::before {
   content: '';
   position: absolute;
@@ -76,37 +89,28 @@
   top: 2.5rem;
   width: 1rem;
   height: 1rem;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   border-radius: 50%;
   border: 0.25rem solid white;
-  box-shadow: 0 0.25rem 0.75rem rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-dot);
   z-index: 2;
 }
 
-/* Estructura interna del elemento */
-.formation-item {
-  display: grid;
-  grid-template-columns: auto 1fr;
-  gap: 2rem;
-  align-items: start;
-}
-
-/* Foto de la institución */
 .formation-photo {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 8rem;
   height: 8rem;
-  background: rgba(255, 255, 255, 0.8);
+  background: var(--glass-light);
   border-radius: 1rem;
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-photo);
   transition: all 0.3s ease;
 }
 
 .formation-photo:hover {
   transform: scale(1.05);
-  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-photo-hover);
 }
 
 .formation-photo img {
@@ -116,14 +120,12 @@
   border-radius: 0.5rem;
 }
 
-/* Contenido de cada elemento */
 .formation-content {
   display: flex;
   flex-direction: column;
   gap: 1rem;
 }
 
-/* Header de cada elemento con título y año */
 .formation-item-header {
   display: flex;
   justify-content: space-between;
@@ -135,48 +137,39 @@
 }
 
 .formation-item-header h2 {
-  font-size: 1.5rem;
-  font-weight: 600;
-  color: #334155;
+  font: 600 1.5rem/1.2 inherit;
+  color: var(--text-primary);
   margin: 0;
   flex: 1;
   min-width: 15rem;
 }
 
-/* Año de la formación */
 .formation-year {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: var(--primary-gradient);
   color: white;
   padding: 0.5rem 1.25rem;
   border-radius: 2rem;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font: 600 0.9rem/1 inherit;
   text-align: center;
   min-width: 4rem;
-  box-shadow: 0 0.25rem 0.75rem rgba(102, 126, 234, 0.3);
+  box-shadow: var(--shadow-dot);
 }
 
-/* Detalles de la formación */
 .formation-details {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
 }
 
-/* Nombre de la institución */
 .institution {
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #667eea;
+  font: 600 1.2rem/1.2 inherit;
+  color: var(--text-accent);
   margin: 0;
 }
 
-/* Ubicación */
 .location {
-  font-size: 1rem;
-  color: #64748b;
-  font-style: normal;
-  font-weight: 500;
+  font: 500 1rem/1.2 inherit;
+  color: var(--text-secondary);
   margin: 0;
 }
 
@@ -185,119 +178,44 @@
   margin-right: 0.25rem;
 }
 
-/* Responsive para tablet */
-@media (max-width: 68rem) {
-  .container {
-    padding: 8rem 1.5rem 2rem 1.5rem;
-  }
-
-  .formation-header h1 {
-    font-size: 2rem;
-  }
-
-  .formation-timeline {
-    max-width: 50rem;
-  }
-
-  .formation-item {
-    padding: 1.5rem;
-    margin-left: 3rem;
-  }
-
-  .formation-item::before {
-    left: -2.75rem;
-  }
-
-  .formation-timeline::before {
-    left: 1.5rem;
-  }
-
-  .formation-photo {
-    width: 6rem;
-    height: 6rem;
-  }
-
-  .formation-photo img {
-    width: 4.5rem;
-    height: 4.5rem;
-  }
-}
-
-/* Estado de carga */
 .loading-message {
   text-align: center;
-  font-size: 1.2rem;
-  color: #667eea;
+  font: 400 1.2rem/1.4 inherit;
+  color: var(--text-accent);
   padding: 3rem;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--glass-bg);
   border-radius: 1rem;
   margin: 2rem 0;
 }
 
-/* Descripción de la formación */
 .description {
-  font-size: 0.95rem;
-  color: #64748b;
-  margin: 0.75rem 0 0 0;
-  line-height: 1.5;
-  font-style: italic;
+  font: italic 0.95rem/1.5 inherit;
+  color: var(--text-secondary);
+  margin: 0.75rem 0 0;
 }
+
+@media (max-width: 68rem) {
+  .container { padding: 8rem 1.5rem 2rem; }
+  .formation-header h1 { font-size: 2rem; }
+  .formation-timeline { max-width: 50rem; }
+  .formation-item { padding: 1.5rem; margin-left: 3rem; }
+  .formation-item::before { left: -2.75rem; }
+  .formation-timeline::before { left: 1.5rem; }
+  .formation-photo { width: 6rem; height: 6rem; }
+  .formation-photo img { width: 4.5rem; height: 4.5rem; }
+}
+
 @media (max-width: 48rem) {
-  .container {
-    padding: 8rem 1rem 2rem 1rem;
-  }
-
-  .formation-header h1 {
-    font-size: 1.75rem;
-  }
-
-  .formation-subtitle {
-    font-size: 1rem;
-  }
-
-  /* Timeline simplificado para móvil */
-  .formation-timeline::before {
-    display: none;
-  }
-
-  .formation-item {
-    margin-left: 0;
-    grid-template-columns: 1fr;
-    text-align: center;
-    gap: 1.5rem;
-  }
-
-  .formation-item::before {
-    display: none;
-  }
-
-  .formation-photo {
-    justify-self: center;
-    width: 5rem;
-    height: 5rem;
-  }
-
-  .formation-photo img {
-    width: 3.5rem;
-    height: 3.5rem;
-  }
-
-  .formation-item-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 1rem;
-  }
-
-  .formation-item-header h2 {
-    font-size: 1.25rem;
-    min-width: auto;
-  }
-
-  .formation-year {
-    align-self: center;
-  }
-
-  .formation-details {
-    text-align: center;
-  }
+  .container { padding: 8rem 1rem 2rem; }
+  .formation-header h1 { font-size: 1.75rem; }
+  .formation-subtitle { font-size: 1rem; }
+  .formation-timeline::before { display: none; }
+  .formation-item { margin-left: 0; grid-template-columns: 1fr; text-align: center; gap: 1.5rem; }
+  .formation-item::before { display: none; }
+  .formation-photo { justify-self: center; width: 5rem; height: 5rem; }
+  .formation-photo img { width: 3.5rem; height: 3.5rem; }
+  .formation-item-header { flex-direction: column; text-align: center; gap: 1rem; }
+  .formation-item-header h2 { font-size: 1.25rem; min-width: auto; }
+  .formation-year { align-self: center; }
+  .formation-details { text-align: center; }
 }

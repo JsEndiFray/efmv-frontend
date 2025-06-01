@@ -1,29 +1,50 @@
+:host {
+  --header-bg: linear-gradient(135deg, #192bac 0%, #533373 100%);
+  --header-scrolled: rgba(102, 126, 234, 0.95);
+  --white-10: rgba(255, 255, 255, 0.1);
+  --white-15: rgba(255, 255, 255, 0.15);
+  --white-20: rgba(255, 255, 255, 0.2);
+  --white-25: rgba(255, 255, 255, 0.25);
+  --white-30: rgba(255, 255, 255, 0.3);
+  --white-90: rgba(255, 255, 255, 0.9);
+  --contact-bg: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  --contact-hover: linear-gradient(45deg, #ff5252, #ff7979);
+  --contact-active: linear-gradient(45deg, #ff3838, #ff6b6b);
+  --toggle-bg: rgba(255, 255, 255, 0.2);
+  --shadow-sm: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+  --shadow-md: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 0.75rem 2.5rem rgba(0, 0, 0, 0.15);
+  --shadow-logo: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+  --shadow-logo-hover: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.3);
+  --shadow-contact: 0 0.25rem 0.75rem rgba(255, 107, 107, 0.3);
+  --shadow-contact-hover: 0 0.375rem 1.25rem rgba(255, 107, 107, 0.4);
+  --shadow-contact-active: 0 0.375rem 1rem rgba(255, 107, 107, 0.5);
+}
+
 .container {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
   z-index: 1000;
-  background: linear-gradient(135deg, #192bac 0%, #533373 100%);
+  background: var(--header-bg);
   backdrop-filter: blur(1.25rem);
-  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.1);
+  border-bottom: 0.0625rem solid var(--white-10);
   padding: 1rem 2rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 0.5rem 2rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-md);
 }
 
-/* Estado del header al hacer scroll */
 .container.scrolled {
-  background: rgba(102, 126, 234, 0.95);
+  background: var(--header-scrolled);
   backdrop-filter: blur(1.875rem);
-  box-shadow: 0 0.75rem 2.5rem rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-lg);
   padding: 0.75rem 2rem;
 }
 
-/* Contenedor del logo con efectos hover */
 .nav-logo {
   display: flex;
   align-items: center;
@@ -34,28 +55,26 @@
 }
 
 .nav-logo:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--white-10);
   transform: translateY(-0.125rem);
 }
 
-/* Imagen del logo con sombras y efectos */
 .nav-logo img {
   height: 3.125rem;
   width: auto;
   border-radius: 0.5rem;
-  box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-logo);
   transition: all 0.3s ease;
 }
 
 .nav-logo:hover img {
   transform: scale(1.05);
-  box-shadow: 0 0.375rem 1.25rem rgba(0, 0, 0, 0.3);
+  box-shadow: var(--shadow-logo-hover);
 }
 
-/* Botón toggle para vista móvil */
 .toggle-button {
   display: none;
-  background: rgba(255, 255, 255, 0.2);
+  background: var(--toggle-bg);
   border: none;
   color: white;
   font-size: 1.5rem;
@@ -67,17 +86,15 @@
 }
 
 .toggle-button:hover {
-  background: rgba(255, 255, 255, 0.3);
+  background: var(--white-30);
   transform: scale(1.1);
 }
 
-/* Navegación principal */
 .nav-list {
   display: flex;
   align-items: center;
 }
 
-/* Lista de elementos de navegación */
 .nav-items {
   display: flex;
   align-items: center;
@@ -87,17 +104,15 @@
   gap: 0.5rem;
 }
 
-/* Elementos individuales de navegación */
 .nav-item {
   display: flex;
   align-items: center;
   text-decoration: none;
-  color: rgba(255, 255, 255, 0.9);
+  color: var(--white-90);
   padding: 0.75rem 1.25rem;
   border-radius: 0.75rem;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-  font-weight: 500;
-  font-size: 0.9rem;
+  font: 500 0.9rem/1 inherit;
   position: relative;
   overflow: hidden;
 }
@@ -109,7 +124,7 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, var(--white-20), transparent);
   transition: left 0.6s ease;
 }
 
@@ -118,27 +133,24 @@
 }
 
 .nav-item:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--white-15);
   color: white;
   transform: translateY(-0.125rem);
-  box-shadow: 0 0.25rem 1rem rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Estado activo de navegación */
 .nav-item.active {
-  background: rgba(255, 255, 255, 0.25);
+  background: var(--white-25);
   color: white;
   box-shadow: 0 0.25rem 0.75rem rgba(0, 0, 0, 0.15);
 }
 
-/* Contenedor del título con icono */
 .title {
   display: flex;
   align-items: center;
   gap: 0.5rem;
 }
 
-/* Iconos SVG de navegación */
 .svg {
   width: 1.125rem;
   height: 1.125rem;
@@ -150,48 +162,43 @@
   transform: scale(1.1);
 }
 
-/* Separadores entre elementos */
 .barra {
   color: rgba(255, 255, 255, 0.4);
   font-size: 1.25rem;
   margin: 0 0.25rem;
 }
 
-/* Botón de contacto especial */
 .contact {
-  background: linear-gradient(45deg, #ff6b6b, #ff8e8e);
+  background: var(--contact-bg);
   border: none;
   color: white;
   padding: 0.75rem 1.5rem;
   border-radius: 2rem;
-  font-weight: 600;
-  font-size: 0.9rem;
+  font: 600 0.9rem/1 inherit;
   cursor: pointer;
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   text-decoration: none;
   display: flex;
   align-items: center;
-  box-shadow: 0 0.25rem 0.75rem rgba(255, 107, 107, 0.3);
+  box-shadow: var(--shadow-contact);
   margin-left: 1rem;
 }
 
 .contact:hover {
-  background: linear-gradient(45deg, #ff5252, #ff7979);
+  background: var(--contact-hover);
   transform: translateY(-0.125rem);
-  box-shadow: 0 0.375rem 1.25rem rgba(255, 107, 107, 0.4);
+  box-shadow: var(--shadow-contact-hover);
 }
 
 .contact.active {
-  background: linear-gradient(45deg, #ff3838, #ff6b6b);
-  box-shadow: 0 0.375rem 1rem rgba(255, 107, 107, 0.5);
+  background: var(--contact-active);
+  box-shadow: var(--shadow-contact-active);
 }
 
-/* Etiqueta de "en proceso" */
 .coming-soon {
   background: linear-gradient(45deg, #ffd700, #ffed4e);
   color: #333;
-  font-size: 0.625rem;
-  font-weight: 700;
+  font: 700 0.625rem/1 inherit;
   padding: 0.125rem 0.5rem;
   border-radius: 1rem;
   margin-left: 0.5rem;
@@ -200,43 +207,21 @@
   animation: pulse 2s infinite;
 }
 
-/* Animación para etiqueta "en proceso" */
 @keyframes pulse {
   0%, 100% { opacity: 1; }
   50% { opacity: 0.7; }
 }
 
-/* Estilos responsive para tablet */
 @media (max-width: 68rem) {
-  .container {
-    padding: 1rem 1.5rem;
-  }
-
-  .nav-items {
-    gap: 0.25rem;
-  }
-
-  .nav-item {
-    padding: 0.5rem 1rem;
-    font-size: 0.85rem;
-  }
-
-  .title {
-    gap: 0.375rem;
-  }
-
-  .svg {
-    width: 1rem;
-    height: 1rem;
-  }
+  .container { padding: 1rem 1.5rem; }
+  .nav-items { gap: 0.25rem; }
+  .nav-item { padding: 0.5rem 1rem; font-size: 0.85rem; }
+  .title { gap: 0.375rem; }
+  .svg { width: 1rem; height: 1rem; }
 }
 
-/* Estilos responsive para móvil */
 @media (max-width: 48rem) {
-  .toggle-button {
-    display: block;
-  }
-
+  .toggle-button { display: block; }
   .nav-list {
     position: absolute;
     top: 100%;
@@ -244,43 +229,16 @@
     right: 0;
     background: rgba(102, 126, 234, 0.98);
     backdrop-filter: blur(1.25rem);
-    border-top: 0.0625rem solid rgba(255, 255, 255, 0.1);
+    border-top: 0.0625rem solid var(--white-10);
     transform: translateY(-100%);
     opacity: 0;
     visibility: hidden;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
-
-  .nav-list.open {
-    transform: translateY(0);
-    opacity: 1;
-    visibility: visible;
-  }
-
-  .nav-items {
-    flex-direction: column;
-    padding: 1rem;
-    gap: 0.5rem;
-  }
-
-  .nav-items li {
-    width: 100%;
-  }
-
-  .nav-item {
-    width: 100%;
-    justify-content: center;
-    padding: 1rem;
-    border-radius: 0.5rem;
-  }
-
-  .barra {
-    display: none;
-  }
-
-  .contact {
-    margin-left: 0;
-    margin-top: 0.5rem;
-    justify-content: center;
-  }
+  .nav-list.open { transform: translateY(0); opacity: 1; visibility: visible; }
+  .nav-items { flex-direction: column; padding: 1rem; gap: 0.5rem; }
+  .nav-items li { width: 100%; }
+  .nav-item { width: 100%; justify-content: center; padding: 1rem; border-radius: 0.5rem; }
+  .barra { display: none; }
+  .contact { margin-left: 0; margin-top: 0.5rem; justify-content: center; }
 }

@@ -1,42 +1,57 @@
+:host {
+  --bg-light: #f8f9fa;
+  --bg-white: #ffffff;
+  --border-light: #ddd;
+  --border-secondary: #adb5bd;
+  --text-dark: #333;
+  --text-medium: #555;
+  --text-light: #666;
+  --text-lighter: #495057;
+  --primary-blue: #007bff;
+  --primary-blue-dark: #0056b3;
+  --danger-red: #dc3545;
+  --danger-red-dark: #c82333;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.1);
+  --shadow-medium: 0 2px 4px rgba(0, 0, 0, 0.1);
+  --shadow-strong: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
 .container {
   width: 100%;
   height: 100vh;
   display: flex;
   flex-direction: column;
-  background-color: #f8f9fa;
+  background: var(--bg-light);
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Contenedor del mapa - ahora va primero y ocupa más espacio */
 .markMap-container {
   flex: 1;
   position: relative;
-  background: #ffffff; /* Cambiar a fondo blanco para ver mejor */
-  margin: 1rem 1rem 0 1rem; /* Sin margin bottom */
+  background: var(--bg-white);
+  margin: 1rem 1rem 0;
   border-radius: 8px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-light);
   overflow: hidden;
-  min-height: 70vh; /* Altura mínima garantizada */
+  min-height: 70vh;
 }
 
-/* Header - ahora va después del mapa y es más compacto */
 .map-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.75rem 1rem; /* Padding reducido */
-  background: white;
+  padding: 0.75rem 1rem;
+  background: var(--bg-white);
   margin: 0 1rem;
-  border-radius: 0 0 8px 8px; /* Solo esquinas inferiores redondeadas */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  flex-shrink: 0; /* No se reduzca */
+  border-radius: 0 0 8px 8px;
+  box-shadow: var(--shadow-medium);
+  flex-shrink: 0;
 }
 
 .map-title {
   margin: 0;
-  color: #333;
-  font-size: 1.25rem; /* Título más pequeño */
-  font-weight: 600;
+  color: var(--text-dark);
+  font: 600 1.25rem/1.2 inherit;
 }
 
 .map-controls {
@@ -45,34 +60,33 @@
 }
 
 .control-btn {
-  background: #fff;
-  border: 1px solid #ddd;
-  padding: 6px 12px; /* Botones más pequeños */
+  background: var(--bg-white);
+  border: 1px solid var(--border-light);
+  padding: 6px 12px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 12px;
+  font: 400 12px/1 inherit;
   transition: all 0.2s ease;
-  color: #555;
+  color: var(--text-medium);
 }
 
 .control-btn:hover {
-  background: #f8f9fa;
-  border-color: #adb5bd;
+  background: var(--bg-light);
+  border-color: var(--border-secondary);
   transform: translateY(-1px);
 }
 
 .control-btn.primary {
-  background: #007bff;
-  color: white;
-  border-color: #007bff;
+  background: var(--primary-blue);
+  color: var(--bg-white);
+  border-color: var(--primary-blue);
 }
 
 .control-btn.primary:hover {
-  background: #0056b3;
-  border-color: #0056b3;
+  background: var(--primary-blue-dark);
+  border-color: var(--primary-blue-dark);
 }
 
-/* Estilos del markmap - usando ViewEncapsulation.None en el componente */
 .markMap-container svg {
   width: 100%;
   height: 100%;
@@ -81,13 +95,12 @@
   top: 0;
   left: 0;
   z-index: 1;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-  background: #ffffff;
+  font-family: inherit;
+  background: var(--bg-white);
+  animation: fadeIn 0.5s ease-out;
 }
 
-/* Estilos globales para markmap - se aplicarán sin encapsulación */
-.loading-state,
-.error-state {
+.loading-state, .error-state {
   position: absolute;
   top: 0;
   left: 0;
@@ -107,152 +120,71 @@
 }
 
 .loading-state p {
-  color: #666;
-  font-size: 1.1rem;
+  color: var(--text-light);
+  font: 400 1.1rem/1.2 inherit;
   margin: 0;
 }
 
-/* Spinner */
 .spinner {
   width: 40px;
   height: 40px;
   border: 4px solid #f3f3f3;
-  border-top: 4px solid #007bff;
+  border-top: 4px solid var(--primary-blue);
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
-}
-
-/* Error state */
 .error-content {
   text-align: center;
   max-width: 400px;
   padding: 2rem;
-  background: white;
+  background: var(--bg-white);
   border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  box-shadow: var(--shadow-strong);
 }
 
 .error-content h3 {
-  color: #dc3545;
-  margin: 0 0 1rem 0;
-  font-size: 1.25rem;
+  color: var(--danger-red);
+  margin: 0 0 1rem;
+  font: 600 1.25rem/1.2 inherit;
 }
 
 .error-content p {
-  color: #666;
-  margin: 0 0 1.5rem 0;
+  color: var(--text-light);
+  margin: 0 0 1.5rem;
   line-height: 1.5;
 }
 
 .retry-btn {
-  background: #dc3545;
-  color: white;
+  background: var(--danger-red);
+  color: var(--bg-white);
   border: none;
   padding: 10px 20px;
   border-radius: 6px;
   cursor: pointer;
-  font-size: 14px;
+  font: 400 14px/1 inherit;
   transition: background-color 0.2s ease;
 }
 
 .retry-btn:hover {
-  background: #c82333;
+  background: var(--danger-red-dark);
 }
 
-/* Instrucciones - más compactas */
 .instructions {
   padding: 0.5rem 1rem;
   background: #e9ecef;
-  margin: 0 1rem 1rem 1rem;
+  margin: 0 1rem 1rem;
   border-radius: 0 0 8px 8px;
-  font-size: 0.85rem;
-  color: #495057;
+  font: 400 0.85rem/1.2 inherit;
+  color: var(--text-lighter);
   text-align: center;
   flex-shrink: 0;
 }
 
 .instructions strong {
-  color: #333;
+  color: var(--text-dark);
 }
 
-/* Estados de carga y error - superpuestos */
-
-/* Responsive */
-@media (max-width: 768px) {
-  .map-header {
-    flex-direction: column;
-    gap: 0.5rem;
-    text-align: center;
-  }
-
-  .map-title {
-    font-size: 1.1rem;
-  }
-
-  .map-controls {
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .markMap-container {
-    margin: 0.5rem 0.5rem 0 0.5rem;
-    min-height: 60vh;
-  }
-}
-
-@media (max-width: 576px) {
-  .control-btn {
-    font-size: 11px;
-    padding: 5px 10px;
-  }
-
-  .map-title {
-    font-size: 1rem;
-  }
-}
-
-/* Pantalla completa */
-.container:fullscreen {
-  background: white;
-  margin: 0;
-}
-
-.container:fullscreen .map-header {
-  border-radius: 0;
-}
-
-.container:fullscreen .markMap-container {
-  margin: 0;
-  border-radius: 0;
-}
-
-.container:fullscreen .instructions {
-  margin: 0;
-  border-radius: 0;
-}
-
-/* Animaciones */
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-.markMap-container svg {
-  animation: fadeIn 0.5s ease-out;
-}
-
-/* Estilos globales para Markmap - sin encapsulación */
 .mm-node {
   cursor: pointer;
   transition: all 0.3s ease;
@@ -264,7 +196,7 @@
 }
 
 .mm-link {
-  stroke: #666;
+  stroke: var(--text-light);
   stroke-width: 2;
   fill: none;
   opacity: 0.7;
@@ -273,43 +205,35 @@
 .mm-node-circle {
   r: 5;
   stroke-width: 2;
-  stroke: #ffffff;
+  stroke: var(--bg-white);
   filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
 }
 
 .mm-node-text {
-  font-size: 12px;
-  font-weight: 500;
-  fill: #333;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font: 500 12px/1.2 inherit;
+  fill: var(--text-dark);
 }
 
-/* Estilos por nivel de profundidad */
 g[data-depth="0"] .mm-node-text {
-  font-size: 16px !important;
-  font-weight: 700 !important;
+  font: 700 16px/1.2 inherit !important;
   fill: #2c3e50 !important;
 }
 
 g[data-depth="1"] .mm-node-text {
-  font-size: 13px !important;
-  font-weight: 600 !important;
+  font: 600 13px/1.2 inherit !important;
   fill: #34495e !important;
 }
 
 g[data-depth="2"] .mm-node-text {
-  font-size: 11px !important;
-  font-weight: 500 !important;
+  font: 500 11px/1.2 inherit !important;
   fill: #495057 !important;
 }
 
 g[data-depth="3"] .mm-node-text {
-  font-size: 10px !important;
-  font-weight: 400 !important;
+  font: 400 10px/1.2 inherit !important;
   fill: #6c757d !important;
 }
 
-/* Círculos por nivel */
 g[data-depth="0"] .mm-node-circle {
   r: 8 !important;
   stroke-width: 3 !important;
@@ -319,3 +243,30 @@ g[data-depth="1"] .mm-node-circle {
   r: 6 !important;
   stroke-width: 2 !important;
 }
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .map-header { flex-direction: column; gap: 0.5rem; text-align: center; }
+  .map-title { font-size: 1.1rem; }
+  .map-controls { flex-wrap: wrap; justify-content: center; }
+  .markMap-container { margin: 0.5rem 0.5rem 0; min-height: 60vh; }
+}
+
+@media (max-width: 576px) {
+  .control-btn { font-size: 11px; padding: 5px 10px; }
+  .map-title { font-size: 1rem; }
+}
+
+.container:fullscreen { background: var(--bg-white); margin: 0; }
+.container:fullscreen .map-header { border-radius: 0; }
+.container:fullscreen .markMap-container { margin: 0; border-radius: 0; }
+.container:fullscreen .instructions { margin: 0; border-radius: 0; }

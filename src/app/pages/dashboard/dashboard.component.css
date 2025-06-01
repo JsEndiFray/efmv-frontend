@@ -1,23 +1,38 @@
-/* Contenedor principal del dashboard */
+:host {
+  --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  --bg-gradient: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-light: rgba(255, 255, 255, 0.7);
+  --glass-border: rgba(255, 255, 255, 0.2);
+  --white-border: rgba(255, 255, 255, 0.8);
+  --text-primary: #2c3e50;
+  --text-accent: #667eea;
+  --shadow-base: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  --shadow-photo: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
+  --shadow-hover: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
+  --shadow-section: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  --border-skills: #27ae60;
+  --border-motivation: #e74c3c;
+  --border-closing: #f39c12;
+}
+
 .container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-  padding: 6rem 2rem 2rem 2rem;
+  background: var(--bg-gradient);
+  padding: 6rem 2rem 2rem;
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Header con título principal */
 .container-title-item {
   text-align: center;
   margin-bottom: 2rem;
 }
 
 .container-title-item h1 {
-  font-size: 2.5rem;
-  font-weight: 700;
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  font: 700 2.5rem/1.2 inherit;
+  background: var(--primary-gradient);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -26,22 +41,20 @@
   text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
 }
 
-/* Contenedor principal del contenido */
 .container-content {
   display: grid;
   grid-template-columns: auto 1fr;
   gap: 3rem;
   max-width: 75rem;
   margin: 0 auto;
-  background: rgba(255, 255, 255, 0.9);
+  background: var(--glass-bg);
   backdrop-filter: blur(0.625rem);
   border-radius: 1.5rem;
   padding: 3rem;
-  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
-  border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+  box-shadow: var(--shadow-base);
+  border: 0.0625rem solid var(--glass-border);
 }
 
-/* Contenedor de la foto de perfil */
 .container-photo {
   display: flex;
   justify-content: center;
@@ -55,138 +68,78 @@
   height: 20rem;
   object-fit: cover;
   border-radius: 1rem;
-  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
-  border: 0.25rem solid rgba(255, 255, 255, 0.8);
+  box-shadow: var(--shadow-photo);
+  border: 0.25rem solid var(--white-border);
   transition: all 0.3s ease;
 }
 
 .container-photo img:hover {
   transform: scale(1.02);
-  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
+  box-shadow: var(--shadow-hover);
 }
 
-/* Contenedor del artículo principal */
 .container-items {
   display: flex;
   flex-direction: column;
   gap: 2rem;
 }
 
-/* Secciones del contenido */
-.intro-section,
-.skills-section,
-.achievements-section,
-.motivation-section,
-.closing-section {
-  background: rgba(255, 255, 255, 0.7);
+.intro-section, .skills-section, .achievements-section, .motivation-section, .closing-section {
+  background: var(--glass-light);
   padding: 1.5rem;
   border-radius: 1rem;
-  border-left: 0.25rem solid #667eea;
+  border-left: 0.25rem solid var(--text-accent);
   transition: all 0.3s ease;
 }
 
-.intro-section:hover,
-.skills-section:hover,
-.achievements-section:hover,
-.motivation-section:hover,
-.closing-section:hover {
-  background: rgba(255, 255, 255, 0.9);
+.intro-section:hover, .skills-section:hover, .achievements-section:hover, .motivation-section:hover, .closing-section:hover {
+  background: var(--glass-bg);
   transform: translateX(0.5rem);
-  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+  box-shadow: var(--shadow-section);
 }
 
-/* Párrafos del contenido */
 .container-items p {
-  font-size: 1.1rem;
-  line-height: 1.7;
-  color: #2c3e50;
-  margin: 0 0 1rem 0;
+  font: 400 1.1rem/1.7 inherit;
+  color: var(--text-primary);
+  margin: 0 0 1rem;
   text-align: justify;
-  font-weight: 400;
 }
 
 .container-items p:last-child {
   margin-bottom: 0;
 }
 
-/* Saludo especial */
 .greeting {
-  font-weight: 600;
-  color: #667eea;
-  font-size: 1.2rem;
+  font: 600 1.2rem/1.4 inherit;
+  color: var(--text-accent);
   margin-bottom: 1.5rem;
 }
 
-/* Efectos especiales para diferentes secciones */
 .skills-section {
-  border-left-color: #27ae60;
+  border-left-color: var(--border-skills);
 }
 
 .motivation-section {
-  border-left-color: #e74c3c;
+  border-left-color: var(--border-motivation);
 }
 
 .closing-section {
-  border-left-color: #f39c12;
+  border-left-color: var(--border-closing);
 }
 
-/* Responsive para tablet */
 @media (max-width: 68rem) {
-  .container {
-    padding: 6rem 1.5rem 2rem 1.5rem;
-  }
-
-  .container-content {
-    gap: 2rem;
-    padding: 2rem;
-  }
-
-  .container-title-item h1 {
-    font-size: 2rem;
-  }
-
-  .container-photo img {
-    width: 12rem;
-    height: 16rem;
-  }
+  .container { padding: 6rem 1.5rem 2rem; }
+  .container-content { gap: 2rem; padding: 2rem; }
+  .container-title-item h1 { font-size: 2rem; }
+  .container-photo img { width: 12rem; height: 16rem; }
 }
 
-/* Responsive para móvil */
 @media (max-width: 48rem) {
-  .container {
-    padding: 6rem 1rem 2rem 1rem;
-  }
-
-  .container-content {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-    padding: 1.5rem;
-  }
-
-  .container-title-item h1 {
-    font-size: 1.75rem;
-  }
-
-  .container-photo {
-    order: -1;
-    position: static;
-  }
-
-  .container-photo img {
-    width: 10rem;
-    height: 13rem;
-  }
-
-  .container-items p {
-    font-size: 1rem;
-    text-align: left;
-  }
-
-  .intro-section,
-  .skills-section,
-  .achievements-section,
-  .motivation-section,
-  .closing-section {
-    padding: 1rem;
-  }
+  .container { padding: 6rem 1rem 2rem; }
+  .container-content { grid-template-columns: 1fr; gap: 2rem; padding: 1.5rem; }
+  .container-title-item h1 { font-size: 1.75rem; }
+  .container-photo { order: -1; position: static; }
+  .container-photo img { width: 10rem; height: 13rem; }
+  .container-items p { font-size: 1rem; text-align: left; }
+  .intro-section, .skills-section, .achievements-section, .motivation-section, .closing-section { padding: 1rem; }
 }
