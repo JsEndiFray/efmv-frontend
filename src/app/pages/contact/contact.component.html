@@ -1,26 +1,105 @@
-<form class="container" (ngSubmit)="sendMessage()">
-  <!-- Contenedor de correo -->
-  <div class="container-email">
-    <span>{{ email }}</span>
-  </div>
+<main class="container">
+  <header class="contact-header">
+    <h1>Contacto</h1>
+    <p class="contact-subtitle">¿Tienes un proyecto en mente? ¡Hablemos!</p>
+  </header>
 
-  <!-- Contenedor de entradas -->
-  <div class="container-items">
-    <label for="name">Nombre:</label>
-    <input type="text" id="name" name="name" [(ngModel)]="contacts.name" required>
+  <div class="contact-content">
+    <!-- Información de contacto -->
+    <aside class="contact-info">
+      <h2>Información de contacto</h2>
+      <div class="contact-item">
+        <span class="contact-label">Email:</span>
+        <a href="mailto:{{ email }}" class="contact-email">{{ email }}</a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Ubicación:</span>
+        <span class="contact-location">Madrid, España</span>
+      </div>
+      <div class="contact-item">
+        <span class="contact-label">Disponibilidad:</span>
+        <span class="contact-availability">Inmediata</span>
+      </div>
+    </aside>
 
-    <label for="email">Correo electrónico:</label>
-    <input type="email" id="email" name="email" [(ngModel)]="contacts.email" required>
-  </div>
+    <!-- Formulario de contacto -->
+    <section class="contact-form-section">
+      <h2>Envíame un mensaje</h2>
+      <form class="contact-form" (ngSubmit)="sendMessage()" #contactForm="ngForm">
+        <div class="form-group">
+          <label for="name" class="form-label">Nombre completo</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            class="form-input"
+            [(ngModel)]="contacts.name"
+            required
+            #nameField="ngModel"
+            placeholder="Tu nombre completo">
+          @if (nameField.invalid && nameField.touched) {
+            <div class="error-message">
+              El nombre es requerido
+            </div>
+          }
+        </div>
 
-  <!-- Contenedor del mensaje -->
-  <div class="container-textarea">
-    <label for="message">Mensaje:</label>
-    <textarea id="message" name="message" cols="90" rows="10" [(ngModel)]="contacts.message" required></textarea>
-  </div>
+        <div class="form-group">
+          <label for="email" class="form-label">Correo electrónico</label>
+          <input
+            type="email"
+            id="email"
+            name="email"
+            class="form-input"
+            [(ngModel)]="contacts.email"
+            required
+            email
+            #emailField="ngModel"
+            placeholder="tu@email.com">
+          @if (emailField.invalid && emailField.touched) {
+            <div class="error-message">
+              @if (emailField.errors?.['required']) {
+                <span>El email es requerido</span>
+              }
+              @if (emailField.errors?.['email']) {
+                <span>Formato de email inválido</span>
+              }
+            </div>
+          }
+        </div>
 
-  <!-- Contenedor del botón -->
-  <div class="container-button">
-    <button type="submit">Enviar</button>
+        <div class="form-group">
+          <label for="message" class="form-label">Mensaje</label>
+          <textarea
+            id="message"
+            name="message"
+            class="form-textarea"
+            [(ngModel)]="contacts.message"
+            required
+            #messageField="ngModel"
+            placeholder="Cuéntame sobre tu proyecto o consulta..."
+            rows="6"></textarea>
+          @if (messageField.invalid && messageField.touched) {
+            <div class="error-message">
+              El mensaje es requerido
+            </div>
+          }
+        </div>
+
+        <div class="form-actions">
+          <button
+            type="submit"
+            class="submit-button"
+            [class.loading]="isSubmitting"
+            [disabled]="contactForm.invalid || isSubmitting">
+            @if (isSubmitting) {
+              Enviando...
+            } @else {
+              Enviar mensaje
+            }
+          </button>
+        </div>
+      </form>
+    </section>
   </div>
-</form>
+</main>

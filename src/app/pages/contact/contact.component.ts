@@ -1,10 +1,11 @@
-import {Component} from '@angular/core';
-import {Router, RouterLink} from '@angular/router';
+import {Component, OnDestroy} from '@angular/core';
+import {RouterLink} from '@angular/router';
 import {FormsModule} from '@angular/forms';
-import {ContactInterface} from '../../core/interface/contact.interface';
+import {Subject, takeUntil} from 'rxjs';
 import Swal from 'sweetalert2';
-import {ContactApiService} from '../../core/services/contact-api.service';
 
+import {ContactApiService} from '../../core/services/contact-services/contact-service';
+import {ContactForm} from '../../interface/contac-interface/contact-interface';
 
 @Component({
   selector: 'app-contact',
@@ -14,68 +15,87 @@ import {ContactApiService} from '../../core/services/contact-api.service';
     FormsModule
   ],
   templateUrl: './contact.component.html',
-  styleUrl: './contact.component.css',
-
+  styleUrl: './contact.component.css'
 })
-export class ContactComponent {
-  email: String = 'endifray@efmv.es'
+export class ContactComponent implements OnDestroy {
+  private readonly destroy$ = new Subject<void>();
 
-  constructor(private _ContactApiService: ContactApiService,
-              private router: Router) {
-  }
+  // Propiedades del componente
+  readonly email = 'endifray@efmv.es';
+  isSubmitting = false;
 
-//requiere que sean el interface del mensaje
-  contacts: ContactInterface = {
+  // Modelo del formulario
+  contacts: ContactForm = {
     name: '',
     email: '',
+    phone: '',
     message: ''
+  };
+
+  constructor(
+    private readonly contactApiService: ContactApiService
+  ) {
   }
 
-//metodo para que el mensaje enviado este relleno correctamente
-  sendMessage() {
-    if (this.contacts.name === '' || this.contacts.email === '' || this.contacts.message === '') {
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+  }
+
+  // Envía el mensaje de contacto
+  sendMessage(): void {
+    if (this.isSubmitting) return;
+
+    // Validar formulario usando el servicio
+    const validationErrors = this.contactApiService.validateForm(this.contacts);
+    if (validationErrors.length > 0) {
       Swal.fire({
-        icon: 'error',
-        title: 'Oops...',
-        text: 'Algo ha salido mal!',
-        footer: 'Revisa que todos los apartados estén correctamente rellenos ',
+        icon: 'warning',
+        title: 'Datos incompletos',
+        text: validationErrors.join(', '),
+        confirmButtonText: 'Entendido',
+        confirmButtonColor: '#f59e0b'
       });
       return;
     }
-    //validamos que el correo esta correctamente
-    const emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-    if (!emailPattern.test(this.contacts.email)) {
-      Swal.fire({
-        icon: 'error',
-        title: 'Correo inválido',
-        text: 'Revisa que el correo este correctamente',
+    this.isSubmitting = true;
+
+    this.contactApiService.sendEmail(this.contacts)
+      .pipe(takeUntil(this.destroy$))
+      .subscribe({
+        next: (response) => {
+          this.isSubmitting = false;
+
+          Swal.fire({
+            icon: 'success',
+            title: '¡Mensaje enviado!',
+            text: 'Gracias por contactarme. Te responderé en las próximas 24 horas.',
+            confirmButtonText: 'Perfecto',
+            confirmButtonColor: '#667eea',
+            timer: 4000,
+            timerProgressBar: true
+          }).then(() => {
+            this.contacts = {
+              name: '',
+              email: '',
+              phone: '',
+              message: ''
+            };
+          });
+        },
+        error: (error) => {
+          this.isSubmitting = false;
+          console.error('Error sending message:', error);
+
+          const userMessage = error.message || 'Error al enviar el mensaje. Inténtalo de nuevo.';
+          Swal.fire({
+            icon: 'error',
+            title: 'No se pudo enviar',
+            text: userMessage,
+            confirmButtonText: 'Entendido',
+            confirmButtonColor: '#ef4444'
+          });
+        }
       });
-      return;
-    }
-    //conexcion con la bbdd
-    this._ContactApiService.sendMessage(this.contacts).subscribe({
-      next: (v) => {
-        Swal.fire({
-          icon: "success",
-          title: 'El mensaje  se ha enviado correctamente',
-          confirmButtonText: 'Ok'
-        }).then(() => {
-          //reset
-          this.contacts = {
-            name: '',
-            email: '',
-            message: ''
-          }
-        })
-      },
-      error: (err) => {
-        console.error(err);
-        Swal.fire({
-          icon: "error",
-          title: "Error",
-          text: "No se pudo enviar el mensaje. Inténtelo de nuevo más tarde.",
-        })
-      }
-    })
   }
 }

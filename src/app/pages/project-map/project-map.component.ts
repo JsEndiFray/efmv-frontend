@@ -9,7 +9,7 @@ import {HttpClient} from '@angular/common/http';
   styleUrl: './project-map.component.css'
 })
 export class ProjectMapComponent implements AfterViewInit {
-  private markOwnPath = './markmap/BackEndNestJs.md'
+  private markOwnPath = '/markmap/InvoiceSystem.md'
 
   constructor(
     private http: HttpClient,

@@ -1,33 +1,37 @@
-<div class="container">
+<main class="container">
+  <header class="formation-header">
+    <h1>Formación Académica</h1>
+    <p class="formation-subtitle">Mi trayectoria educativa y profesional</p>
+  </header>
 
-  <section class="container-items">
-    <div class="container-photo">
-      <img src="/logo/EloyAlfaro.jpg" alt="Logo del I.E.S Eloy Alfaro">
-    </div>
-    <h3>Graduado de Secundaria</h3>
-    <p>I.E.S Eloy Alfaro</p>
-    <p>Machala, Ecuador</p>
-    <time datetime="2001">2001</time>
-  </section>
+  <div class="formation-timeline">
+    @if (isLoading) {
+      <div class="loading-message">
+        Cargando formación...
+      </div>
+    } @else {
+      @for (formation of formations; track trackByFormationId($index, formation)) {
+        <article class="formation-item">
+          <aside class="formation-photo">
+            <img [src]="formation.logo" [alt]="'Logo de ' + formation.institution">
+          </aside>
 
-  <section class="container-items">
-    <div class="container-photo">
-      <img src="/logo/aeronaiticos.jpg" alt="Logo del Centro de Estudios Aeronáuticos">
-    </div>
-    <h3>Título de Tripulante de Cabina de Pasajeros</h3>
-    <p>Centro de Estudios Aeronáuticos</p>
-    <p>Madrid, España</p>
-    <time datetime="2008">2008</time>
-  </section>
+          <div class="formation-content">
+            <header class="formation-item-header">
+              <h2>{{ formation.title }}</h2>
+              <time [dateTime]="formation.year.toString()" class="formation-year">{{ formation.year }}</time>
+            </header>
 
-  <section class="container-items">
-    <div class="container-photo">
-      <img src="/logo/Atrium.jpg" alt="Logo del Centro de Estudios Atrium">
-    </div>
-    <h3>Programador Full Stack Developer</h3>
-    <p>Centro de Estudios Atrium</p>
-    <p>Madrid, España</p>
-    <time datetime="2024">2024</time>
-  </section>
-
-</div>
+            <div class="formation-details">
+              <h3 class="institution">{{ formation.institution }}</h3>
+              <address class="location">{{ formation.location }}</address>
+              @if (formation.description) {
+                <p class="description">{{ formation.description }}</p>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    }
+  </div>
+</main>

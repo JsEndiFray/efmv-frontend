@@ -1,4 +1,5 @@
-export const environment={
-  production: false,
-  endpoint: 'http://localhost:5001/',
+export const environment = {
+  production: true,
+  apiUrl: 'https://api.efmv.es',
+  contactEndpoint: '/api/contact'
 };

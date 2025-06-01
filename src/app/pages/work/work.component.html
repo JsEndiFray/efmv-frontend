@@ -1,31 +1,116 @@
-<div class="container">
-  <div class="container-download">
-    <button type="button" class="download-button">
-      <span class="title">Descargar C.V</span>
-      <span class="coming-soon">!En proceso¡</span>
-    </button>
-  </div>
+<main class="container">
+  <header class="work-header">
+    <h1>Experiencia Laboral</h1>
+    <p class="work-subtitle">Mi trayectoria profesional a lo largo de los años</p>
 
-  <div class="flip-containers">
-    @for (card of cards; track card.year) {
-      <div class="flip-container" (mouseenter)="flip(cards.indexOf(card))">
-        <div class="flipper" [ngClass]="{'flipped': isFlipped(cards.indexOf(card))}">
-          <div class="front">
-            {{ card.year }}
-          </div>
-          <div class="back">
-            <span class="year-small">{{ card.year }}</span>
-            <p>{{ card.text }}</p>
-            <p>{{ card.text1 }}</p>
-            <p>{{ card.text2 }}</p>
-            <p>{{ card.text3 }}</p>
-            <p>{{ card.text4 }}</p>
-            <p>{{ card.text5 }}</p>
-            <p>{{ card.text6 }}</p>
-          </div>
+    <!-- Estadísticas de experiencia -->
+    @if (experienceStats.totalJobs) {
+      <div class="experience-stats">
+        <div class="stat-item">
+          <span class="stat-number">{{ experienceStats.totalJobs }}</span>
+          <span class="stat-label">Empleos</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ experienceStats.yearsOfExperience }}</span>
+          <span class="stat-label">Años de Experiencia</span>
+        </div>
+        <div class="stat-item">
+          <span class="stat-number">{{ experienceStats.categoriesWorked.length }}</span>
+          <span class="stat-label">Sectores</span>
         </div>
       </div>
     }
-  </div>
-</div>
+  </header>
 
+  <!-- Botón de descarga de CV -->
+  <div class="download-section">
+    <button type="button" class="download-button" (click)="downloadCV()">
+      <span class="download-icon">📄</span>
+      <span class="download-text">
+      <span class="title">Descargar C.V</span>
+      <span class="coming-soon">¡Disponible!</span> <!-- CAMBIAR DE "¡En proceso!" A "¡Disponible!" -->
+    </span>
+    </button>
+  </div>
+
+  @if (isLoading) {
+    <div class="loading-message">
+      Cargando experiencia laboral...
+    </div>
+  } @else {
+    <!-- Timeline de experiencia laboral -->
+    <section class="work-timeline">
+      @for (experience of workExperience; track trackByExperienceId($index, experience)) {
+        <article class="work-card" [class.expanded]="isCardExpanded(experience)">
+          <!-- Header siempre visible -->
+          <header class="card-header" (click)="toggleCard(experience)">
+            <div class="header-left">
+              <div class="year-badge">{{ experience.startDate.split(' ').pop() }}</div>
+              <div class="position-info">
+                <h3 class="position-title">{{ experience.position }}</h3>
+                <div class="company-name">{{ experience.company }}</div>
+              </div>
+            </div>
+
+            <div class="header-right">
+              @if (experience.isCurrentJob) {
+                <div class="current-job-badge">Actual</div>
+              }
+              <div class="category-badge" [style.background-color]="getCategoryColor(experience.category)">
+                {{ getCategoryText(experience.category) }}
+              </div>
+              <div class="expand-icon" [class.rotated]="isCardExpanded(experience)">
+                ▼
+              </div>
+            </div>
+          </header>
+
+          <!-- Contenido expandible -->
+          <div class="card-content" [class.expanded]="isCardExpanded(experience)">
+            <div class="content-inner">
+              @if (experience.companyType) {
+                <div class="company-type">{{ experience.companyType }}</div>
+              }
+
+              <div class="work-details">
+                <div class="date-range">
+                  <span class="dates">{{ experience.startDate }} - {{ experience.endDate }}</span>
+                  <span class="duration">{{ experience.duration }}</span>
+                </div>
+
+                <address class="work-location">{{ experience.location }}</address>
+              </div>
+
+              @if (experience.responsibilities && experience.responsibilities.length > 0) {
+                <div class="responsibilities">
+                  <h4>Responsabilidades principales:</h4>
+                  <ul>
+                    @for (responsibility of experience.responsibilities; track responsibility) {
+                      <li>{{ responsibility }}</li>
+                    }
+                  </ul>
+                </div>
+              }
+
+              @if (experience.achievements && experience.achievements.length > 0) {
+                <div class="achievements">
+                  <h4>Logros destacados:</h4>
+                  <ul>
+                    @for (achievement of experience.achievements; track achievement) {
+                      <li>{{ achievement }}</li>
+                    }
+                  </ul>
+                </div>
+              }
+            </div>
+          </div>
+        </article>
+      }
+    </section>
+
+    <!-- Instrucciones para interacción -->
+    <div class="interaction-hint">
+      <p>💡 Haz clic en las tarjetas para ver más detalles de cada experiencia</p>
+    </div>
+  }
+</main>

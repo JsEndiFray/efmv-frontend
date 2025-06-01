@@ -1,0 +1,321 @@
+.container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background-color: #f8f9fa;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Contenedor del mapa - ahora va primero y ocupa más espacio */
+.markMap-container {
+  flex: 1;
+  position: relative;
+  background: #ffffff; /* Cambiar a fondo blanco para ver mejor */
+  margin: 1rem 1rem 0 1rem; /* Sin margin bottom */
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  min-height: 70vh; /* Altura mínima garantizada */
+}
+
+/* Header - ahora va después del mapa y es más compacto */
+.map-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem; /* Padding reducido */
+  background: white;
+  margin: 0 1rem;
+  border-radius: 0 0 8px 8px; /* Solo esquinas inferiores redondeadas */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-shrink: 0; /* No se reduzca */
+}
+
+.map-title {
+  margin: 0;
+  color: #333;
+  font-size: 1.25rem; /* Título más pequeño */
+  font-weight: 600;
+}
+
+.map-controls {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.control-btn {
+  background: #fff;
+  border: 1px solid #ddd;
+  padding: 6px 12px; /* Botones más pequeños */
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 12px;
+  transition: all 0.2s ease;
+  color: #555;
+}
+
+.control-btn:hover {
+  background: #f8f9fa;
+  border-color: #adb5bd;
+  transform: translateY(-1px);
+}
+
+.control-btn.primary {
+  background: #007bff;
+  color: white;
+  border-color: #007bff;
+}
+
+.control-btn.primary:hover {
+  background: #0056b3;
+  border-color: #0056b3;
+}
+
+/* Estilos del markmap - usando ViewEncapsulation.None en el componente */
+.markMap-container svg {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: #ffffff;
+}
+
+/* Estilos globales para markmap - se aplicarán sin encapsulación */
+.loading-state,
+.error-state {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  z-index: 10;
+  backdrop-filter: blur(2px);
+}
+
+.loading-state {
+  gap: 1rem;
+}
+
+.loading-state p {
+  color: #666;
+  font-size: 1.1rem;
+  margin: 0;
+}
+
+/* Spinner */
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #f3f3f3;
+  border-top: 4px solid #007bff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Error state */
+.error-content {
+  text-align: center;
+  max-width: 400px;
+  padding: 2rem;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.error-content h3 {
+  color: #dc3545;
+  margin: 0 0 1rem 0;
+  font-size: 1.25rem;
+}
+
+.error-content p {
+  color: #666;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.retry-btn {
+  background: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.2s ease;
+}
+
+.retry-btn:hover {
+  background: #c82333;
+}
+
+/* Instrucciones - más compactas */
+.instructions {
+  padding: 0.5rem 1rem;
+  background: #e9ecef;
+  margin: 0 1rem 1rem 1rem;
+  border-radius: 0 0 8px 8px;
+  font-size: 0.85rem;
+  color: #495057;
+  text-align: center;
+  flex-shrink: 0;
+}
+
+.instructions strong {
+  color: #333;
+}
+
+/* Estados de carga y error - superpuestos */
+
+/* Responsive */
+@media (max-width: 768px) {
+  .map-header {
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+  }
+
+  .map-title {
+    font-size: 1.1rem;
+  }
+
+  .map-controls {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .markMap-container {
+    margin: 0.5rem 0.5rem 0 0.5rem;
+    min-height: 60vh;
+  }
+}
+
+@media (max-width: 576px) {
+  .control-btn {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .map-title {
+    font-size: 1rem;
+  }
+}
+
+/* Pantalla completa */
+.container:fullscreen {
+  background: white;
+  margin: 0;
+}
+
+.container:fullscreen .map-header {
+  border-radius: 0;
+}
+
+.container:fullscreen .markMap-container {
+  margin: 0;
+  border-radius: 0;
+}
+
+.container:fullscreen .instructions {
+  margin: 0;
+  border-radius: 0;
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.markMap-container svg {
+  animation: fadeIn 0.5s ease-out;
+}
+
+/* Estilos globales para Markmap - sin encapsulación */
+.mm-node {
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.mm-node:hover {
+  transform: scale(1.05);
+  filter: brightness(1.1);
+}
+
+.mm-link {
+  stroke: #666;
+  stroke-width: 2;
+  fill: none;
+  opacity: 0.7;
+}
+
+.mm-node-circle {
+  r: 5;
+  stroke-width: 2;
+  stroke: #ffffff;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2));
+}
+
+.mm-node-text {
+  font-size: 12px;
+  font-weight: 500;
+  fill: #333;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+/* Estilos por nivel de profundidad */
+g[data-depth="0"] .mm-node-text {
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  fill: #2c3e50 !important;
+}
+
+g[data-depth="1"] .mm-node-text {
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  fill: #34495e !important;
+}
+
+g[data-depth="2"] .mm-node-text {
+  font-size: 11px !important;
+  font-weight: 500 !important;
+  fill: #495057 !important;
+}
+
+g[data-depth="3"] .mm-node-text {
+  font-size: 10px !important;
+  font-weight: 400 !important;
+  fill: #6c757d !important;
+}
+
+/* Círculos por nivel */
+g[data-depth="0"] .mm-node-circle {
+  r: 8 !important;
+  stroke-width: 3 !important;
+}
+
+g[data-depth="1"] .mm-node-circle {
+  r: 6 !important;
+  stroke-width: 2 !important;
+}

@@ -1,4 +1,4 @@
-import { Routes } from '@angular/router';
+import {Routes} from '@angular/router';
 import {DashboardComponent} from './pages/dashboard/dashboard.component';
 import {FormationComponent} from './pages/formation/formation.component';
 import {SkillsComponent} from './pages/skills/skills.component';
@@ -10,29 +10,29 @@ import {ProjectComponent} from './pages/project/project.component';
 export const routes: Routes = [
 
   {
-    path:'dashboard',
+    path: 'dashboard',
     component: DashboardComponent,
-    title:'Carta Presentación'
+    title: 'Carta Presentación'
   },
   {
-    path:'formation',
+    path: 'formation',
     component: FormationComponent,
-    title:'Formación'
+    title: 'Formación'
   },
   {
-    path:'skills',
+    path: 'skills',
     component: SkillsComponent,
-    title:'Habilidades'
+    title: 'Habilidades'
   },
   {
-    path:'work',
+    path: 'work',
     component: WorkComponent,
-    title:'Experiencia Laboral'
+    title: 'Experiencia Laboral'
   },
   {
     path: 'contact',
     component: ContactComponent,
-    title:'Contacto'
+    title: 'Contacto'
   },
   {
     path: 'project',
@@ -40,14 +40,14 @@ export const routes: Routes = [
     title: 'Proyectos'
   },
   {
-    path:'project-map',
-    loadComponent: ()=> import('./core/project-map/project-map.component').then(m => m.ProjectMapComponent)
+    path: 'project-map',
+    loadComponent: () => import('./pages/project-map/project-map.component').then(m => m.ProjectMapComponent)
   },
 
   {
-    path:'**',
-    redirectTo:'dashboard',
-    pathMatch:'full'
+    path: '**',
+    redirectTo: 'dashboard',
+    pathMatch: 'full'
   }
 
 ];

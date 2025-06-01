@@ -1,68 +1,96 @@
-<div class="container">
-  <div class="container-item">
-    <!-- Ítem 1 -->
-    <article class="container-items">
-      <figure class="container-photo">
-        <img [ngClass]="{'zoom-in': isZooming}" src="/logo/angular.jpg" alt="Logo de Angular">
-      </figure>
-      <h3>Front-End</h3>
-      <p>Angular</p>
-    </article>
+<main class="container">
+  <header class="skills-header">
+    <h1>Habilidades Técnicas</h1>
+    <p class="skills-subtitle">Tecnologías que manejo y estoy aprendiendo</p>
+  </header>
 
-    <!-- Ítem 2 -->
-    <article class="container-items">
-      <figure class="container-photo">
-        <img [ngClass]="{'zoom-in': isZooming}" src="/logo/node.jpg" alt="Logo de Node.js">
-      </figure>
-      <h3>Back-End</h3>
-      <p>Node.js, Express</p>
-    </article>
+  @if (isLoading) {
+    <div class="loading-message">
+      Cargando habilidades...
+    </div>
+  } @else {
+    <!-- Habilidades técnicas -->
+    <section class="skills-section">
+      <h2 class="section-title">Stack Tecnológico</h2>
+      <div class="skills-grid">
+        @for (skill of technicalSkills; track trackBySkillId($index, skill)) {
+          <article class="skill-item" [class.animated]="isAnimated(skill.id)">
+            <figure class="skill-photo">
+              <img [src]="skill.logo" [alt]="'Logo de ' + skill.name">
+            </figure>
 
-    <!-- Ítem 3 -->
-    <article class="container-items">
-      <figure class="container-photo">
-        <img [ngClass]="{'zoom-in': isZooming}" src="/logo/Nest-js.jpg" alt="Logo de Nest.js">
-      </figure>
-      <h3>Back-End</h3>
-      <p>Nest.js, TypeScript</p>
-    </article>
+            <div class="skill-content">
+              <header class="skill-header">
+                <h3 class="skill-name">{{ skill.name }}</h3>
+                <span class="skill-level" [style.background-color]="getLevelColor(skill.level)">
+                  {{ getLevelText(skill.level) }}
+                </span>
+              </header>
 
-    <!-- Ítem 4 -->
-    <article class="container-items">
-      <figure class="container-photo">
-        <img [ngClass]="{'zoom-in': isZooming}" src="/logo/mysqlSequelize.jpg" alt="Logo de MySQL">
-      </figure>
-      <h3>Base de Datos</h3>
-      <p>Relacional MySQL</p>
-      <p>(con Sequelize ORM)</p>
-    </article>
+              <div class="skill-technologies">
+                @for (tech of skill.technologies; track tech) {
+                  <span class="tech-tag">{{ tech }}</span>
+                }
+              </div>
 
-    <!-- Ítem 5 -->
-    <article class="container-items">
-      <figure class="container-photo">
-        <img [ngClass]="{'zoom-in': isZooming}" src="/logo/mongodbMongoose.jpg" alt="Logo de MongoDB">
-      </figure>
-      <h3>Base de Datos</h3>
-      <p>NoSQL MongoDB Atlas</p>
-      <p>(con Mongoose ODM)</p>
-    </article>
+              @if (skill.description) {
+                <p class="skill-description">{{ skill.description }}</p>
+              }
 
-    <!-- Ítem 6 -->
-    <article class="container-items">
-      <figure class="container-photo">
-        <img [ngClass]="{'zoom-in': isZooming}" src="/logo/github.jpg" alt="Logo de GitHub">
-      </figure>
-      <h3>GitHub</h3>
-      <p>(Aprendiendo)</p>
-    </article>
+              @if (skill.yearsOfExperience !== undefined) {
+                <div class="skill-experience">
+                  @if (skill.yearsOfExperience < 1) {
+                    <span>{{ (skill.yearsOfExperience * 12) | number:'1.0-0' }} meses de experiencia</span>
+                  } @else {
+                    <span>{{ skill.yearsOfExperience }} {{ skill.yearsOfExperience === 1 ? 'año' : 'años' }} de experiencia</span>
+                  }
+                </div>
+              }
+            </div>
+          </article>
+        }
+      </div>
+    </section>
 
-    <!-- Ítem 7 -->
-    <article class="container-items">
-      <figure class="container-photo">
-        <img [ngClass]="{'zoom-in': isZooming}" src="/logo/reparacion.jpg" alt="Logo de Reparación">
-      </figure>
-      <h3>Otras Habilidades</h3>
-      <p>Reparación de telefonía móvil</p>
-    </article>
-  </div>
-</div>
+    <!-- Otras habilidades -->
+    @if (otherSkills.length > 0) {
+      <section class="skills-section">
+        <h2 class="section-title">Otras Habilidades</h2>
+        <div class="skills-grid">
+          @for (skill of otherSkills; track trackBySkillId($index, skill)) {
+            <article class="skill-item other-skill" [class.animated]="isAnimated(skill.id)">
+              <figure class="skill-photo">
+                <img [src]="skill.logo" [alt]="'Logo de ' + skill.name">
+              </figure>
+
+              <div class="skill-content">
+                <header class="skill-header">
+                  <h3 class="skill-name">{{ skill.name }}</h3>
+                  <span class="skill-level" [style.background-color]="getLevelColor(skill.level)">
+                    {{ getLevelText(skill.level) }}
+                  </span>
+                </header>
+
+                <div class="skill-technologies">
+                  @for (tech of skill.technologies; track tech) {
+                    <span class="tech-tag">{{ tech }}</span>
+                  }
+                </div>
+
+                @if (skill.description) {
+                  <p class="skill-description">{{ skill.description }}</p>
+                }
+
+                @if (skill.yearsOfExperience !== undefined) {
+                  <div class="skill-experience">
+                    <span>{{ skill.yearsOfExperience }} {{ skill.yearsOfExperience === 1 ? 'año' : 'años' }} de experiencia</span>
+                  </div>
+                }
+              </div>
+            </article>
+          }
+        </div>
+      </section>
+    }
+  }
+</main>

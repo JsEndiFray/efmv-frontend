@@ -1,0 +1,78 @@
+<header class="container" [ngClass]="{'scrolled': scrolled}">
+  <div class="nav-logo" [routerLink]="['/dashboard']">
+    <img src="/logo/EF.jpg" alt="Logo-Ef">
+  </div>
+
+  <!-- Botón Toggle para el menú en pantallas pequeñas -->
+  @if (isMobileView) {
+    <button class="toggle-button" (click)="toggleMenu()">
+      ☰
+    </button>
+  }
+
+  <!-- Menú de navegación -->
+  @if (!isMobileView || menuOpen) {
+    <nav class="nav-list" [ngClass]="{'open': menuOpen}">
+      <ul class="nav-items">
+        <li>
+          <a class="nav-item" [routerLink]="['/dashboard']" (click)="setActive('dashboard')"
+             [ngClass]="{'active': activeItem === 'dashboard'}">
+            <span class="title">
+              <img class="svg" src="/svg/house-chimney.svg" alt="inicio.svg">
+              Inicio
+            </span>
+          </a>
+        </li>
+        <li><span class="barra">&#124;</span></li>
+
+        <li>
+          <a class="nav-item" [routerLink]="['/formation']" (click)="setActive('formation')"
+             [ngClass]="{'active': activeItem === 'formation'}">
+            <span class="title">
+              <img class="svg" src="/svg/graduation-cap.svg" alt="formación.svg">
+              Formación
+            </span>
+          </a>
+        </li>
+        <li><span class="barra">&#124;</span></li>
+
+        <li>
+          <a class="nav-item" [routerLink]="['/skills']" (click)="setActive('skills')"
+             [ngClass]="{'active': activeItem === 'skills'}">
+            <span class="title">
+              <img class="svg" src="/svg/laptop-code.svg" alt="habilidades.svg">
+              Habilidades
+            </span>
+          </a>
+        </li>
+        <li><span class="barra">&#124;</span></li>
+
+        <li>
+          <a class="nav-item" [routerLink]="['/work']" (click)="setActive('work')"
+             [ngClass]="{'active': activeItem === 'work'}">
+            <span class="title">
+              <img class="svg" src="/svg/business-time.svg" alt="experiencia.svg">
+              Experiencia Laboral
+            </span>
+          </a>
+        </li>
+        <li><span class="barra">&#124;</span></li>
+
+        <li>
+          <a class="nav-item" [routerLink]="['/project']" (click)="setActive('project')"
+             [ngClass]="{'active': activeItem === 'project'}">
+            <span class="title">
+              <img class="svg" src="/svg/user-gear.svg" alt="proyecto.svg">
+              Proyectos
+            </span>
+            <span class="coming-soon">¡En proceso !</span>
+          </a>
+        </li>
+        <li>
+          <a class="contact" [routerLink]="['/contact']" (click)="setActive('contact')"
+             [ngClass]="{'active': activeItem === 'contact'}">Contacto</a>
+        </li>
+      </ul>
+    </nav>
+  }
+</header>

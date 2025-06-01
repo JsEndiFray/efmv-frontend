@@ -1,42 +1,241 @@
-<div class="container">
-  <header class="container-title">
-    <h1>BackEnd Nest.js</h1>
+<main class="container">
+  <header class="project-header">
+    <h1>Sistema de Facturación</h1>
+    <p class="project-subtitle">API REST completa para gestión de facturas, clientes y inmuebles</p>
   </header>
 
-  <div class="container-items">
+  <div class="project-content">
+    <!-- Información del proyecto -->
+    <section class="project-info">
+      <div class="project-overview">
+        <h2>Descripción General</h2>
+        <p>Sistema completo de facturación empresarial que permite gestionar clientes, inmuebles, crear facturas y
+          generar reportes. Desarrollado con Node.js, Express y MySQL siguiendo arquitectura REST.</p>
 
-    <div class="container-section">
+        <div class="tech-stack">
+          <h3>Tecnologías utilizadas:</h3>
+          <div class="tech-badges">
+            <span class="tech-badge nodejs">Node.js</span>
+            <span class="tech-badge express">Express</span>
+            <span class="tech-badge mysql">MySQL</span>
+            <span class="tech-badge jwt">JWT Auth</span>
+            <span class="tech-badge pdf">PDF Generator</span>
+          </div>
+        </div>
+      </div>
 
-      <section>
-        <h2>Documentación de la API</h2>
-        <p>Esta API permite gestionar usuarios, roles y autenticación de manera eficiente. A continuación, un breve
-          resumen de los principales endpoints:</p>
+      <!-- Documentación de endpoints -->
+      <div class="api-documentation">
+        <h2>Funcionalidades Principales</h2>
 
-        <h3>1. Autenticación</h3>
-        <p><strong>POST /auth/login:</strong> Autentica un usuario y devuelve un token JWT para acceder a los recursos
-          protegidos.</p>
+        <div class="endpoint-group">
+          <h3>👥 Gestión de Clientes</h3>
+          <div class="endpoint">
+            <div class="endpoint-method get">GET</div>
+            <div class="endpoint-path">/api/clients</div>
+            <p class="endpoint-description">Obtiene la lista completa de clientes registrados.</p>
+          </div>
+          <div class="endpoint">
+            <div class="endpoint-method post">POST</div>
+            <div class="endpoint-path">/api/clients</div>
+            <p class="endpoint-description">Registra un nuevo cliente con datos fiscales completos.</p>
+          </div>
+        </div>
 
-        <h3>2. Gestión de Usuarios</h3>
-        <p><strong>GET /todos :</strong> Recupera la lista de usuarios registrados (requiere autenticación).</p>
-        <p><strong>POST /admin:</strong> Permite crear un nuevo usuario proporcionando datos como nombre, correo y rol.
-        </p>
+        <div class="endpoint-group">
+          <h3>📦 Gestión de Inmuebles</h3>
+          <div class="endpoint">
+            <div class="endpoint-method get">GET</div>
+            <div class="endpoint-path">/api/states</div>
+            <p class="endpoint-description">Lista todos los productos con precios y stock disponible.</p>
+          </div>
+          <div class="endpoint">
+            <div class="endpoint-method put">PUT</div>
+            <div class="endpoint-path">/api/states/:id</div>
+            <p class="endpoint-description">Actualiza información y de inmuebles existentes.</p>
+          </div>
+        </div>
 
-        <h3>3. Gestión de Roles</h3>
-        <p><strong>GET /roles:</strong> Recupera la lista de roles disponibles (requiere autenticación).</p>
+        <div class="endpoint-group">
+          <h3>🧾 Sistema de Facturación</h3>
+          <div class="endpoint">
+            <div class="endpoint-method post">POST</div>
+            <div class="endpoint-path">/api/invoices</div>
+            <p class="endpoint-description">Crea una nueva factura con cálculo automático de IVA y totales.</p>
+          </div>
+          <div class="endpoint">
+            <div class="endpoint-method get">GET</div>
+            <div class="endpoint-path">/api/invoices/:id/pdf</div>
+            <p class="endpoint-description">Genera y descarga la factura en formato PDF.</p>
+          </div>
+        </div>
 
-        <h3>Notas importantes</h3>
-        <ul>
-          <li>Las rutas protegidas utilizan el decorador <code>&#64;Roles</code> para controlar el acceso.</li>
-          <li>Las rutas públicas, como la autenticación, están marcadas con el decorador <code>&#64;Public</code>.</li>
-        </ul>
-      </section>
+        <div class="endpoint-group">
+          <h3>📊 Reportes y Analytics</h3>
+          <div class="endpoint">
+            <div class="endpoint-method get">GET</div>
+            <div class="endpoint-path">/api/reports/sales</div>
+            <p class="endpoint-description">Genera reportes de ventas por períodos personalizables.</p>
+          </div>
+        </div>
 
-    </div>
+        <div class="important-notes">
+          <h3>📋 Características Técnicas</h3>
+          <ul>
+            <li>Base de datos MySQL con relaciones optimizadas entre tablas.</li>
+            <li>Autenticación JWT para proteger endpoints administrativos.</li>
+            <li>Generación automática de PDFs con formato profesional.</li>
+            <li>Cálculo automático de IVA y descuentos por productos.</li>
+            <li>Validación completa de datos fiscales y comerciales.</li>
+            <li>Sistema de numeración automática de facturas.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
 
-    <div class="container-img">
-      <h2>Vista del backend desarrollado en Nest.js.</h2>
-      <img src="/project jpg/project.jpg" alt="Imagen Backend Nest.js">
-      <button [routerLink]="['/project-map']">Aceda al mapa mental</button>
-    </div>
+    <!-- Demostración visual -->
+    <aside class="project-demo">
+      <div class="demo-header">
+        <h2>Demostración del Sistema</h2>
+        <p>Interfaz y funcionalidades del sistema de facturación</p>
+      </div>
+
+      <!-- Demostración visual -->
+      <div class="demo-images">
+        <h3>📸 Sistema de Facturación en Acción</h3>
+
+        <!-- Galería de imágenes -->
+        <div class="project-gallery">
+          <div class="gallery-item">
+            <img src="/project-images/Swagger/Swagger-1.jpg"
+                 alt="Documentación Swagger"
+                 loading="lazy"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5Td2FnZ2VyIEFQSVxuRG9jdW1lbnRhY2nDs248L3RleHQ+PC9zdmc+'">
+            <div class="gallery-caption">Documentación Swagger</div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="/project-images/Myslq/Mysql.png"
+                 alt="Base de datos MySQL"
+                 loading="lazy"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5CYXNlIGRlIERhdG9zXG5NeVNRTCAtIDYgVGFibGFzPC90ZXh0Pjwvc3ZnPg=='">
+            <div class="gallery-caption">Base de Datos MySQL</div>
+          </div>
+
+          <div class="gallery-item">
+            <img src="/project-images/backend/repo.png"
+                 alt="Código del Backend"
+                 loading="lazy"
+                 onerror="this.src='data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNCIgZmlsbD0iIzY2NmUiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5BcnF1aXRlY3R1cmFcbk5vZGUuanMgKyBFeHByZXNzPC90ZXh0Pjwvc3ZnPg=='">
+            <div class="gallery-caption">Arquitectura del Backend</div>
+          </div>
+        </div>
+
+        <div class="placeholder-content">
+          <h4>🚀 Sistema de Facturación API</h4>
+          <p>📋 30+ Endpoints documentados en Swagger</p>
+          <p>🗄️ Base de datos MySQL con 6 tablas relacionadas</p>
+          <p>💻 Arquitectura MVC con Node.js + Express</p>
+          <p>🔐 Autenticación JWT y validación completa</p>
+        </div>
+      </div>
+
+      <!-- Características técnicas -->
+      <div class="technical-highlights">
+        <div class="highlight-item">
+          <span class="highlight-icon">📊</span>
+          <div class="highlight-content">
+            <h4>API Completa</h4>
+            <p>Sistema REST con autenticación JWT, gestión de clientes, productos y generación de facturas PDF</p>
+          </div>
+        </div>
+
+        <div class="highlight-item">
+          <span class="highlight-icon">🗄️</span>
+          <div class="highlight-content">
+            <h4>Base de Datos</h4>
+            <p>MySQL optimizada con relaciones entre users, clients, bills, owners, estates y estate_owners</p>
+          </div>
+        </div>
+
+        <div class="highlight-item">
+          <span class="highlight-icon">⚡</span>
+          <div class="highlight-content">
+            <h4>Funcionalidades</h4>
+            <p>Cálculo automático de IVA, numeración de facturas, sistema de abonos y reportes de ventas</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="demo-actions">
+        <button class="primary-button" [routerLink]="['/project-map']">
+          <span class="button-icon">🗺️</span>
+          Ver Arquitectura Completa
+        </button>
+
+        <a href="https://github.com/JsEndiFray/Proyecto-Facturas"
+           target="_blank"
+           rel="noopener noreferrer"
+           class="secondary-button">
+          <span class="button-icon">📂</span>
+          Ver Código Fuente
+        </a>
+
+        <div class="demo-note">
+          <span class="note-icon">💡</span>
+          <span class="note-text">Proyecto en desarrollo local. Documentación completa en el mapa de arquitectura.</span>
+        </div>
+      </div>
+
+      <!-- Características destacadas -->
+      <div class="project-features">
+        <h3>✨ Características destacadas</h3>
+        <div class="features-grid">
+          <div class="feature-item">
+            <span class="feature-icon">🧾</span>
+            <span class="feature-text">Facturas PDF</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">💰</span>
+            <span class="feature-text">Cálculo de IVA</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">👥</span>
+            <span class="feature-text">Gestión Clientes</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📦</span>
+            <span class="feature-text">Control Stock</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">📊</span>
+            <span class="feature-text">Reportes Ventas</span>
+          </div>
+          <div class="feature-item">
+            <span class="feature-icon">🔢</span>
+            <span class="feature-text">Numeración Auto</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Métricas del proyecto -->
+      <div class="project-metrics">
+        <h3>📈 Estado del Proyecto</h3>
+        <div class="metrics-grid">
+          <div class="metric-item">
+            <span class="metric-number">95%</span>
+            <span class="metric-label">Completado</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-number">15+</span>
+            <span class="metric-label">Endpoints</span>
+          </div>
+          <div class="metric-item">
+            <span class="metric-number">5</span>
+            <span class="metric-label">Tablas DB</span>
+          </div>
+        </div>
+      </div>
+    </aside>
   </div>
-</div>
+</main>

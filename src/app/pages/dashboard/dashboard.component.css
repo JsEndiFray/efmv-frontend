@@ -1,80 +1,192 @@
-/*Configuracion general*/
+/* Contenedor principal del dashboard */
 .container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+  padding: 6rem 2rem 2rem 2rem;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  height: auto;
-  color: #ffffff;
-  padding: 12rem 1rem 5rem;
+  gap: 2rem;
 }
 
+/* Header con título principal */
+.container-title-item {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.container-title-item h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin: 0;
+  letter-spacing: 0.05rem;
+  text-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.1);
+}
+
+/* Contenedor principal del contenido */
 .container-content {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 3rem;
+  max-width: 75rem;
+  margin: 0 auto;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(0.625rem);
+  border-radius: 1.5rem;
+  padding: 3rem;
+  box-shadow: 0 1rem 3rem rgba(0, 0, 0, 0.1);
+  border: 0.0625rem solid rgba(255, 255, 255, 0.2);
+}
+
+/* Contenedor de la foto de perfil */
+.container-photo {
   display: flex;
   justify-content: center;
   align-items: flex-start;
-  width: 100%;
+  position: sticky;
+  top: 2rem;
 }
 
-.container-photo {
-  margin: 0 1.25rem;
-
-
-  & img {
-    height: 13.75rem; /* 20px*/
-    width: 10.625rem; /*170px*/
-  }
+.container-photo img {
+  width: 15rem;
+  height: 20rem;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 0.75rem 2rem rgba(0, 0, 0, 0.15);
+  border: 0.25rem solid rgba(255, 255, 255, 0.8);
+  transition: all 0.3s ease;
 }
 
-/* el titulo*/
-.container-title-item {
-  margin-bottom: 0.9375rem; /* 5px*/
-  font-size: 3.125rem; /*50px*/
-  font-family: 'Inter', sans-serif;
+.container-photo img:hover {
+  transform: scale(1.02);
+  box-shadow: 0 1rem 2.5rem rgba(0, 0, 0, 0.2);
 }
 
-/*los p*/
+/* Contenedor del artículo principal */
 .container-items {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  height: auto;
-  width: 100%;
-  margin: 0.625rem; /*10px*/
-  font-size: 1.125rem; /*18px*/
-  font-family: Arial, sans-serif;
-  overflow: hidden;
-  line-height: 1.6rem;
-
-  & p {
-    margin: 0.9rem;
-  }
+  gap: 2rem;
 }
 
+/* Secciones del contenido */
+.intro-section,
+.skills-section,
+.achievements-section,
+.motivation-section,
+.closing-section {
+  background: rgba(255, 255, 255, 0.7);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  border-left: 0.25rem solid #667eea;
+  transition: all 0.3s ease;
+}
 
-/* Responsividad */
-@media (max-width: 50rem) {
-  /* 600px */
+.intro-section:hover,
+.skills-section:hover,
+.achievements-section:hover,
+.motivation-section:hover,
+.closing-section:hover {
+  background: rgba(255, 255, 255, 0.9);
+  transform: translateX(0.5rem);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.1);
+}
+
+/* Párrafos del contenido */
+.container-items p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #2c3e50;
+  margin: 0 0 1rem 0;
+  text-align: justify;
+  font-weight: 400;
+}
+
+.container-items p:last-child {
+  margin-bottom: 0;
+}
+
+/* Saludo especial */
+.greeting {
+  font-weight: 600;
+  color: #667eea;
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+
+/* Efectos especiales para diferentes secciones */
+.skills-section {
+  border-left-color: #27ae60;
+}
+
+.motivation-section {
+  border-left-color: #e74c3c;
+}
+
+.closing-section {
+  border-left-color: #f39c12;
+}
+
+/* Responsive para tablet */
+@media (max-width: 68rem) {
   .container {
-    margin-top: 0;
+    padding: 6rem 1.5rem 2rem 1.5rem;
   }
 
-  .container-title-item {
+  .container-content {
+    gap: 2rem;
+    padding: 2rem;
+  }
+
+  .container-title-item h1 {
     font-size: 2rem;
   }
 
   .container-photo img {
-    height: 10rem;
-    width: 8rem;
+    width: 12rem;
+    height: 16rem;
   }
+}
 
-  .container-items {
-    font-size: 1rem;
-    margin: 0.3125rem; /*5px*/
+/* Responsive para móvil */
+@media (max-width: 48rem) {
+  .container {
+    padding: 6rem 1rem 2rem 1rem;
   }
 
   .container-content {
-    flex-direction: column;
-    align-items: center;
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    padding: 1.5rem;
   }
 
+  .container-title-item h1 {
+    font-size: 1.75rem;
+  }
+
+  .container-photo {
+    order: -1;
+    position: static;
+  }
+
+  .container-photo img {
+    width: 10rem;
+    height: 13rem;
+  }
+
+  .container-items p {
+    font-size: 1rem;
+    text-align: left;
+  }
+
+  .intro-section,
+  .skills-section,
+  .achievements-section,
+  .motivation-section,
+  .closing-section {
+    padding: 1rem;
+  }
 }
