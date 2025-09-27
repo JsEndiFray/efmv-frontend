@@ -5,12 +5,12 @@ export const workExperienceData: WorkExperience[] = [
   {
     id: 1,
     position: 'Vendedor y Atención al Cliente',
-    company: 'B2CFONE',
+    company: 'RedChain',
     companyType: 'Vodafone',
     location: 'Madrid, España',
     startDate: 'Marzo 2022',
     endDate: 'Actualidad',
-    duration: '2 años y 9 meses',
+    duration: '',
     responsibilities: [
       'Atención personalizada al cliente',
       'Venta de productos y servicios móviles',
@@ -38,7 +38,7 @@ export const workExperienceData: WorkExperience[] = [
   {
     id: 3,
     position: 'Vendedor y Atención al Cliente',
-    company: 'Redchain',
+    company: 'RedChain',
     companyType: 'Vodafone',
     location: 'Madrid, España',
     startDate: 'Septiembre 2017',
