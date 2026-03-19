@@ -54,7 +54,9 @@ export class CvService {
       // Limpiar
       document.body.removeChild(link);
 
-      console.log('✅ Descarga de CV iniciada desde:', url);
+      if (!environment.production) {
+        console.log('✅ Descarga de CV iniciada desde:', url);
+      }
 
       if (showProgress) {
         setTimeout(async () => {
@@ -66,7 +68,9 @@ export class CvService {
       }
 
     } catch (error) {
-      console.error('❌ Error al iniciar descarga de CV:', error);
+      if (!environment.production) {
+        console.error('❌ Error al iniciar descarga de CV:', error);
+      }
 
       await this.showErrorAlert(
         'Error de descarga',
@@ -114,7 +118,9 @@ export class CvService {
       return status;
 
     } catch (error) {
-      console.error('❌ Error al verificar estado del CV:', error);
+      if (!environment.production) {
+        console.error('❌ Error al verificar estado del CV:', error);
+      }
       throw error;
     }
   }
@@ -180,7 +186,9 @@ export class CvService {
       userMessage = this.getServerErrorMessage(error.status);
     }
 
-    console.error('Error en CvService:', errorMessage);
+    if (!environment.production) {
+      console.error('Error en CvService:', errorMessage);
+    }
     return throwError(() => new Error(userMessage));
   }
 

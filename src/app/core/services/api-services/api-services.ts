@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {Observable} from 'rxjs';
-import {catchError, map} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 import {ErrorHandlerService} from '../../error-handler/error-handler.service';
 import {environment} from '../../../../environments/environment';
 
@@ -28,9 +28,6 @@ export class ApiServices {
   post<T, R = T>(endpoint: string, data: T): Observable<R> {
     const fullUrl = `${this.apiUrl}/${endpoint}`;
     return this.http.post<R>(fullUrl, data).pipe(
-      map(response => {
-        return response;
-      }),
       catchError(error => this.errorHandler.handleError(error))
     );
   }

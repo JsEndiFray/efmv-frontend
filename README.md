@@ -1,100 +1,141 @@
-# 🌟 CV Web Personal
+# EFMV · Frontend
 
-Una aplicación web moderna desarrollada con **Angular 18+** para presentar mi perfil profesional de forma interactiva y visual.
+Portfolio web personal desarrollado con Angular 18. Presenta perfil profesional, experiencia laboral, habilidades técnicas, formación académica y un formulario de contacto integrado con la API REST.
 
-## 🚀 Descripción
+**Desplegado en Vercel · [efmv.es](https://www.efmv.es)**
 
-Este proyecto presenta mi currículum vitae de manera digital, organizado en secciones navegables que permiten a los visitantes conocer mi experiencia, habilidades y proyectos de forma intuitiva.
+---
 
-## 📋 Secciones
+## Stack
 
-### 🏠 **Dashboard - Carta de Presentación**
-Bienvenida inicial con una presentación personal y profesional.
+| Tecnología | Versión | Uso |
+|---|---|---|
+| Angular | 18.2 | Framework principal (standalone components) |
+| TypeScript | 5.5 | Lenguaje — tipado estricto, sin `any` explícito |
+| RxJS | 7.8 | Gestión de observables y flujos asíncronos |
+| SweetAlert2 | 11.x | Modales y notificaciones de usuario |
+| Markmap | 0.18 | Visualización de mapas mentales (lazy loaded) |
 
-### 🎓 **Formación**
-Detalles sobre mi educación académica y certificaciones.
+---
 
-### 💪 **Habilidades**
-Conjunto de competencias técnicas y blandas organizadas por categorías.
+## Rutas
 
-### 💼 **Experiencia Laboral**
-Historial profesional con roles, responsabilidades y logros destacados.
+| Ruta | Página | Carga |
+|---|---|---|
+| `/dashboard` | Carta de presentación | Eager |
+| `/formation` | Formación académica | Eager |
+| `/skills` | Habilidades técnicas | Eager |
+| `/work` | Experiencia laboral + descarga de CV | Eager |
+| `/contact` | Formulario de contacto | Eager |
+| `/project` | Proyectos | Eager |
+| `/project-map` | Mapa mental de proyectos | **Lazy** |
 
-### 📞 **Contacto**
-Información de contacto y enlaces a redes profesionales.
+`/project-map` carga `markmap-lib` (~670 kb) únicamente al navegar a esa ruta, sin impacto en el bundle inicial.
 
-### 🚀 **Proyectos**
-Portafolio de proyectos realizados con tecnologías diversas.
+---
 
-### 🗺️ **Mapa de Proyectos**
-Visualización interactiva de proyectos y tecnologías utilizadas.
-
-## 🛠️ Tecnologías Utilizadas
-
-- **Frontend**: Angular 18+
-- **Backend**: MongoDB con Claude
-- **Routing**: Angular Router con lazy loading
-- **Estilo**: [Especificar framework CSS utilizado]
-
-## 🏗️ Arquitectura
+## Arquitectura
 
 ```
-src/
-├── pages/
+src/app/
+├── core/
+│   ├── data/                   # Datos estáticos tipados (formación, skills, experiencia)
+│   ├── error-handler/          # Manejo centralizado de errores HTTP
+│   └── services/
+│       ├── api-services/       # Capa base HTTP (ApiServices)
+│       ├── contact-services/   # ContactApiService — envío y validación del formulario
+│       ├── cv-service/         # CvService — descarga y estado del CV
+│       ├── formation-services/ # FormationService — datos de formación
+│       ├── kills-services/     # KillsServices — habilidades técnicas
+│       └── work-services/      # WorkService — experiencia laboral
+├── interface/                  # Interfaces TypeScript para todos los modelos
+├── pages/                      # Componentes de página (standalone)
 │   ├── dashboard/
 │   ├── formation/
 │   ├── skills/
 │   ├── work/
 │   ├── contact/
 │   ├── project/
-│   └── project-map/
-└── app.routes.ts
+│   └── project-map/            # Lazy loaded
+└── shared/
+    ├── header/
+    └── footer/
 ```
 
-## 🚀 Instalación y Uso
+**Flujo de una petición de contacto:**
+
+```
+ContactComponent
+  → ContactApiService.validateForm()   # Validación client-side
+  → ContactApiService.sendEmail()
+      → ApiServices.post()             # HTTP POST con environment correcto
+          → ErrorHandlerService        # Manejo centralizado de errores HTTP
+```
+
+---
+
+## Entornos
+
+| Archivo | Contexto | API URL |
+|---|---|---|
+| `environment.development.ts` | Desarrollo local | `http://localhost:5001` |
+| `environment.ts` | Producción | `https://api.efmv.es` |
+
+Angular sustituye automáticamente el entorno en el build de producción mediante `fileReplacements` en `angular.json`.
+
+---
+
+## Instalación
 
 ```bash
-# Clonar el repositorio
-git clone [URL_DEL_REPOSITORIO]
-
-# Navegar al directorio
-cd cv-web-personal
-
 # Instalar dependencias
 npm install
 
-# Ejecutar en modo desarrollo
-ng serve
+# Desarrollo
+npm start           # ng serve → http://localhost:4200
 
-# Abrir en el navegador
-http://localhost:4200
+# Build de producción
+npm run build       # ng build --configuration production
 ```
 
-## 📱 Características
+---
 
-- ✅ **Diseño Responsivo**: Optimizado para dispositivos móviles y desktop
-- ✅ **Navegación Fluida**: Transiciones suaves entre secciones
-- ✅ **Carga Optimizada**: Implementación de lazy loading
-- ✅ **SEO Friendly**: Títulos descriptivos para cada sección
-- ✅ **Experiencia de Usuario**: Interfaz intuitiva y moderna
+## Seguridad
 
-## 🎯 Objetivo
-
-Este CV web tiene como objetivo:
-
-- Presentar mi perfil profesional de manera moderna e interactiva
-- Demostrar habilidades en desarrollo frontend con Angular
-- Facilitar el acceso a mi información profesional
-- Mostrar proyectos y competencias técnicas
-
-## 📞 Contacto
-
-Para consultas sobre este proyecto o oportunidades laborales, puedes contactarme a través de la sección de contacto en la aplicación.
+| Medida | Implementación |
+|---|---|
+| Sin dependencias CDN | Todas las librerías gestionadas vía npm — sin scripts externos |
+| Tipado estricto | Sin `any` explícito en todo el proyecto |
+| Logs controlados | `console.error/log` solo activos bajo `!environment.production` |
+| Sin bypasses Angular | Sin `innerHTML`, `DomSanitizer.bypassSecurityTrust*` ni `eval` |
+| Entorno correcto en producción | Import de `environment` validado — `fileReplacements` verificado en bundle |
 
 ---
 
-⭐ **¿Te gusta este proyecto?** ¡Dale una estrella en GitHub!
+## Principios aplicados
+
+- **Standalone components** — sin NgModules, estructura modular y tree-shakeable
+- **Tipado completo** — interfaces definidas para todos los modelos de datos, sin `any`
+- **Unsubscribe pattern** — `takeUntil(destroy$)` en todos los componentes con subscripciones
+- **Lazy loading estratégico** — `markmap-lib` aislado en su ruta, sin impacto en carga inicial
+- **Control flow moderno** — `@if`, `@for` nativos de Angular 17+ en todos los templates
+- **Separación de responsabilidades** — datos, lógica HTTP y presentación en capas independientes
 
 ---
 
-*Desarrollado con ❤️ usando Angular 18+*
+## Estado actual
+
+- [x] Portfolio completo con todas las secciones navegables
+- [x] Formulario de contacto funcional con validación client-side
+- [x] Descarga de CV desde la API con feedback visual
+- [x] Visualización de mapa mental de proyectos (lazy loaded)
+- [x] Tipado estricto — sin `any` en todo el proyecto
+- [x] Sin dependencias CDN externas
+- [x] Build de producción apunta a API correcta (`api.efmv.es`)
+- [x] Bundle inicial por debajo de 480 kb raw
+
+---
+
+## Autor
+
+**Endi Fray** · [efmv.es](https://www.efmv.es) · [endifray@efmv.es](mailto:endifray@efmv.es)

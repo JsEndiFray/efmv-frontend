@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { ApiServices } from '../api-services/api-services';
 
 import {ContactForm, ContactResponse} from '../../../interface/contac-interface/contact-interface';
@@ -35,11 +34,7 @@ export class ContactApiService {
       message: contact.message.trim()
     };
 
-    return this.apiService.post<ContactForm, ContactResponse>(this.contactEndpoint, cleanContact).pipe(
-      map(response => {
-        return response;
-      })
-    );
+    return this.apiService.post<ContactForm, ContactResponse>(this.contactEndpoint, cleanContact);
   }
   /**
    * Valida los datos del formulario antes de enviar el email

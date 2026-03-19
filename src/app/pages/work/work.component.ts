@@ -6,6 +6,7 @@ import {WorkService} from '../../core/services/work-services/work-service';
 import {HttpErrorResponse} from '@angular/common/http';
 import {CvService} from '../../core/services/cv-service/cv.service';
 import {DownloadOptions} from '../../interface/cv-interface/cv-interface';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-work',
@@ -22,9 +23,15 @@ export class WorkComponent implements OnInit, OnDestroy {
 
   // Propiedades del componente
   workExperience: WorkExperience[] = [];
-  experienceStats: any = {};
+  experienceStats: {
+    totalJobs: number;
+    yearsOfExperience: number;
+    categoriesWorked: string[];
+    longestJob: WorkExperience | null;
+  } = { totalJobs: 0, yearsOfExperience: 0, categoriesWorked: [], longestJob: null };
   isLoading = true;
   isMobile = false;
+  isDownloading = false;
 
   // Estado para las tarjetas expandibles
   expandedCards = new Set<number>();
@@ -138,43 +145,20 @@ export class WorkComponent implements OnInit, OnDestroy {
     return texts[category] || category;
   }
 
-  // Placeholder para descargar CV
-
   async downloadCV(): Promise<void> {
+    this.isDownloading = true;
     try {
-      // Cambiar texto del botón
-      const button = document.querySelector('.download-button .coming-soon') as HTMLElement | null;
-      const originalText: string | null = button?.textContent || null;
-
-      if (button) {
-        button.textContent = 'Descargando...';
-        button.style.color = '#10b981';
-      }
-
-      // Configurar opciones de descarga
       const options: Partial<DownloadOptions> = {
         filename: 'CV-Endi-Fray-Medranda.pdf',
         showProgress: true
       };
-
-      // Iniciar descarga con SweetAlert2
       await this.cvService.downloadCV(options);
-
-      // Restaurar botón
-      if (button && originalText) {
-        button.textContent = originalText;
-        button.style.color = '';
-      }
-
     } catch (error: unknown) {
-      console.error('❌ Error al descargar CV:', error);
-
-      // Restaurar botón en caso de error
-      const button = document.querySelector('.download-button .coming-soon') as HTMLElement | null;
-      if (button) {
-        button.textContent = '¡Disponible!';
-        button.style.color = '';
+      if (!environment.production) {
+        console.error('❌ Error al descargar CV:', error);
       }
+    } finally {
+      this.isDownloading = false;
     }
   }
 

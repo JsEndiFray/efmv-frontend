@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
+import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,9 @@ export class ErrorHandlerService {
    * @returns Observable con error formateado
    */
   handleError(error: HttpErrorResponse): Observable<never> {
-    console.error('Error al enviar email:', error);
+    if (!environment.production) {
+      console.error('Error al enviar email:', error);
+    }
 
     let errorMessage = 'Error al enviar el mensaje';
 
@@ -39,11 +42,13 @@ export class ErrorHandlerService {
       }
     }
 
-    console.error('🔍 Error Details:', {
-      message: errorMessage,
-      status: error.status,
-      timestamp: new Date().toISOString()
-    });
+    if (!environment.production) {
+      console.error('🔍 Error Details:', {
+        message: errorMessage,
+        status: error.status,
+        timestamp: new Date().toISOString()
+      });
+    }
 
     return throwError(() => new Error(errorMessage));
   }

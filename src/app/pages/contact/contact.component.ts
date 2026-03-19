@@ -6,6 +6,7 @@ import Swal from 'sweetalert2';
 
 import {ContactApiService} from '../../core/services/contact-services/contact-service';
 import {ContactForm} from '../../interface/contac-interface/contact-interface';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-contact',
@@ -85,7 +86,9 @@ export class ContactComponent implements OnDestroy {
         },
         error: (error) => {
           this.isSubmitting = false;
-          console.error('Error sending message:', error);
+          if (!environment.production) {
+            console.error('Error sending message:', error);
+          }
 
           const userMessage = error.message || 'Error al enviar el mensaje. Inténtalo de nuevo.';
           Swal.fire({

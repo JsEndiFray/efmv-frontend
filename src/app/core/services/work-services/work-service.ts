@@ -62,9 +62,12 @@ export class WorkService {
       return longest.duration.length > current.duration.length ? longest : current;
     });
 
+    const startYear = Math.min(...workExperienceData.map(exp => parseInt(exp.startDate.split(' ').pop() || '0')));
+    const yearsOfExperience = new Date().getFullYear() - startYear;
+
     const stats = {
       totalJobs,
-      yearsOfExperience: 23, // Desde 2001 hasta 2024
+      yearsOfExperience,
       categoriesWorked,
       longestJob
     };
