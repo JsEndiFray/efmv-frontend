@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit, HostListener, inject, PLATFORM_ID } from '@angular/core';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Subject, takeUntil } from 'rxjs';
 import {WorkExperience} from '../../interface/work-interface/work-.interface';
 import {WorkService} from '../../core/services/work-services/work-service';
@@ -10,7 +10,7 @@ import {DownloadOptions} from '../../interface/cv-interface/cv-interface';
 @Component({
   selector: 'app-work',
   standalone: true,
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './work.component.html',
   styleUrl: './work.component.css'
 })
